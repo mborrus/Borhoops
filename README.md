@@ -11,3 +11,6 @@ I used a virtual env for this, you should do the same so our version match.
 
 #### Download the data
 Data is held at the kaggle URL. You must log in to download the folder. Set the location of your data folder in the config file. I couldn't be bothered to configure the `kaggle` package.
+
+# TODO:
+add logging

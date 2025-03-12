@@ -2,6 +2,7 @@
 
 #### Things you should set for yourself
 venv_dir: ./ballenv
-data_dir: ./SourceData
+data_dir: ./SourceData/
+
 
 #### Things you probably don't need to change

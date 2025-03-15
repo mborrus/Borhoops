@@ -18,7 +18,7 @@ I'd like to submit a few different predictions:
 - A submission that is all .5 (no choice) - DONE (Equal_values)
 - My own ELO calculated from the bare minimum - DONE (BasicEloProbs)
 - My own ELO calculated from Nate's methodology
--   -  Stubs are in place for the changes, just need to write them
+    -  Stubs are in place for the changes, just need to write them
 - Nate's ELO on its own - DONE (NateEloProbs.csv)
 - Nate's ELO + ????, decide what to add to move it above EV
     -  Composite with other power rankings?

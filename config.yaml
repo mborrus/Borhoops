@@ -3,6 +3,7 @@
 #### Things you should set for yourself
 venv_dir: ./ballenv
 data_dir: ./SourceData/
+output_dir: ./Output/
 
 
 #### Things you probably don't need to change

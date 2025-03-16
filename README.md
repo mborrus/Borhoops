@@ -24,7 +24,7 @@ I'd like to submit a few different predictions:
     -  Composite with other power rankings?
     -  apply a 1.05x boost to elo differences for tourney play?
     -  Feature Engineering from historical data, using elo paired with seed difference, recent performance?
- 
+- I should use one that does it based on ratings alone
 -  Re-run them all after selection sunday
 
 All of these will need to get updated when the newest data release comes

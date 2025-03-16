@@ -22,7 +22,7 @@ I'd like to submit a few different predictions:
 - Nate's ELO on its own - DONE (NateEloProbs.csv)
 - Nate's ELO + ????, decide what to add to move it above EV
     -  Composite with other power rankings?
-    -  apply a 1.05x boost to elo differences for tourney play?
+    -  apply a 1.07x boost to elo differences for tourney play - Done (to all...)
     -  Feature Engineering from historical data, using elo paired with seed difference, recent performance?
 - I should use one that does it based on ratings alone
 - A composite of mine + Nates

@@ -2,6 +2,8 @@
 
 March Madness prediction model for the Kaggle March Machine Learning Mania competition. Predicts win probabilities for every possible NCAA tournament matchup (men's and women's).
 
+**Read [`docs/golden_rules.md`](docs/golden_rules.md) before writing any code.** These are non-negotiable.
+
 ## Project Status
 
 Transitioning from Jupyter notebook prototypes to a productionized data pipeline. The v1 notebooks are working and were used for the 2025 Kaggle competition. The next phase (v2) is building an automated ELT pipeline with Airflow, dbt, and Snowflake.

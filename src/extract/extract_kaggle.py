@@ -42,5 +42,5 @@ def download(data_dir: Path):
 
 
 if __name__ == "__main__":
-    repo_root = Path(__file__).resolve().parent.parent
+    repo_root = Path(__file__).resolve().parent.parent.parent
     download(repo_root / "data")

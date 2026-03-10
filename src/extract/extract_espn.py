@@ -134,5 +134,5 @@ def extract_incremental(data_dir: Path):
 
 
 if __name__ == "__main__":
-    repo_root = Path(__file__).resolve().parent.parent
+    repo_root = Path(__file__).resolve().parent.parent.parent
     extract_incremental(repo_root / "data")

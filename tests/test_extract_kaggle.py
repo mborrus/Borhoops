@@ -6,7 +6,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from extract_kaggle import download
+from extract.extract_kaggle import download
 
 
 class TestDownload:
@@ -24,7 +24,7 @@ class TestDownload:
 
         mock_result = type("Result", (), {"returncode": 0, "stderr": "", "stdout": ""})()
 
-        with patch("extract_kaggle.subprocess.run", return_value=mock_result):
+        with patch("extract.extract_kaggle.subprocess.run", return_value=mock_result):
             ok = download(tmp_path)
 
         assert ok is True
@@ -35,7 +35,7 @@ class TestDownload:
         """Failed download returns False and prints hint."""
         mock_result = type("Result", (), {"returncode": 1, "stderr": "", "stdout": ""})()
 
-        with patch("extract_kaggle.subprocess.run", return_value=mock_result):
+        with patch("extract.extract_kaggle.subprocess.run", return_value=mock_result):
             ok = download(tmp_path)
 
         assert ok is False

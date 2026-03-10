@@ -7,7 +7,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from extract_espn import get_season_gap, get_date_gap, save_to_cbbpy
+from extract.extract_espn import get_season_gap, get_date_gap, save_to_cbbpy
 
 
 @pytest.fixture

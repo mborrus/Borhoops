@@ -1,10 +1,11 @@
-"""Orchestrate data extraction from all sources.
+"""Orchestrate data extraction and transformation.
 
 Usage:
-  python src/runner.py                              # incremental espn + kaggle
+  python src/runner.py                              # extract + transform
   python src/runner.py --source kaggle              # just kaggle
-  python src/runner.py --source espn                # incremental espn (default)
+  python src/runner.py --source espn                # incremental espn
   python src/runner.py --source espn --backfill     # full season backfill
+  python src/runner.py --source transform           # ESPN → Kaggle transform
 """
 
 import argparse
@@ -13,9 +14,10 @@ from pathlib import Path
 
 import yaml
 
-from extract_kaggle import download as kaggle_download
-from extract_espn import extract_backfill as espn_backfill
-from extract_espn import extract_incremental as espn_incremental
+from extract.extract_kaggle import download as kaggle_download
+from extract.extract_espn import extract_backfill as espn_backfill
+from extract.extract_espn import extract_incremental as espn_incremental
+from transform.transform_espn import transform_and_union
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -27,14 +29,14 @@ def load_config() -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description="Run data extractors")
-    parser.add_argument("--source", choices=["kaggle", "espn"], help="Run a single source")
+    parser.add_argument("--source", choices=["kaggle", "espn", "transform"], help="Run a single source")
     parser.add_argument("--backfill", action="store_true", help="Full season backfill (ESPN only)")
     args = parser.parse_args()
 
     config = load_config()
     data_dir = REPO_ROOT / config["data_dir"]
 
-    sources = [args.source] if args.source else ["kaggle", "espn"]
+    sources = [args.source] if args.source else ["kaggle", "espn", "transform"]
     results = {}
 
     for source in sources:
@@ -49,6 +51,8 @@ def main():
                     results[source] = espn_backfill(data_dir)
                 else:
                     results[source] = espn_incremental(data_dir)
+            elif source == "transform":
+                results[source] = transform_and_union(data_dir)
         except Exception as e:
             print(f"FAILED: {source} — {e}", file=sys.stderr)
             results[source] = False

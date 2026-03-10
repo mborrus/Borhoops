@@ -1,8 +1,7 @@
 # Configuration file for model
 
 #### Things you should set for yourself
-venv_dir: ./ballenv
-data_dir: ./SourceData/
+data_dir: ./data/
 output_dir: ./Output/
 
 

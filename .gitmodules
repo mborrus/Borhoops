@@ -1,0 +1,3 @@
+[submodule "CBBpy"]
+	path = CBBpy
+	url = https://github.com/mborrus/CBBpy.git

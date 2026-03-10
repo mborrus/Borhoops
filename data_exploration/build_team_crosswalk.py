@@ -23,11 +23,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 
 ESPN_MENS = REPO_ROOT / "CBBpy/src/cbbpy/utils/mens_team_map.csv"
 ESPN_WOMENS = REPO_ROOT / "CBBpy/src/cbbpy/utils/womens_team_map.csv"
-KAGGLE_M_TEAMS = REPO_ROOT / "SourceData/static_data/MTeams.csv"
-KAGGLE_W_TEAMS = REPO_ROOT / "SourceData/static_data/WTeams.csv"
-KAGGLE_M_SPELLINGS = REPO_ROOT / "SourceData/static_data/MTeamSpellings.csv"
-KAGGLE_W_SPELLINGS = REPO_ROOT / "SourceData/static_data/WTeamSpellings.csv"
-OUTPUT_CSV = REPO_ROOT / "SourceData/derived/espn_kaggle_crosswalk.csv"
+KAGGLE_M_TEAMS = REPO_ROOT / "data/kaggle/MTeams.csv"
+KAGGLE_W_TEAMS = REPO_ROOT / "data/kaggle/WTeams.csv"
+KAGGLE_M_SPELLINGS = REPO_ROOT / "data/kaggle/MTeamSpellings.csv"
+KAGGLE_W_SPELLINGS = REPO_ROOT / "data/kaggle/WTeamSpellings.csv"
+OUTPUT_CSV = REPO_ROOT / "data/derived/espn_kaggle_crosswalk.csv"
 
 # ── Manual overrides: espn_id → kaggle_men_id ──────────────────────────────
 # These teams can't be resolved via spelling match due to abbreviation,

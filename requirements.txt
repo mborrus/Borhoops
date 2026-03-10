@@ -1,3 +1,4 @@
+-e ./CBBpy
 appnope==0.1.4
 asttokens==3.0.0
 bleach==6.2.0

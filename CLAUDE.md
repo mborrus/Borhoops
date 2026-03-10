@@ -18,13 +18,14 @@ Borhoops/
 │   ├── Basic_Elo.ipynb       # Simple Elo baseline
 │   ├── EDA.ipynb             # Exploratory data analysis + data wrangling
 │   └── Random_Choice_Input.ipynb  # Random baseline
-├── bball/
-│   └── SourceData/           # All input data (gitignored)
-│       ├── Kaggle/           # Kaggle competition CSVs (men's M* and women's W*)
-│       ├── Nate/             # Nate Silver SBCB ratings (scraped from Substack)
-│       └── derived/          # Generated lookup tables (Home_Lookup.csv, HomeFieldAdvantage.csv)
+├── data/                     # All input data (gitignored), flat by source
+│   ├── kaggle/               # Kaggle competition CSVs (men's M* and women's W*)
+│   ├── nate/                 # Nate Silver SBCB ratings (scraped from Substack)
+│   ├── derived/              # Generated lookup tables (Home_Lookup.csv, HomeFieldAdvantage.csv, espn_kaggle_crosswalk.csv)
+│   └── cbbpy/                # CBBpy ESPN scraper downloads (daily game results + locations)
+├── data_exploration/         # Scripts for data exploration and crosswalk building
 ├── Output/                   # Model prediction CSVs in Kaggle submission format
-├── config.yaml               # Paths config (data_dir, output_dir, venv_dir)
+├── config.yaml               # Paths config (data_dir, output_dir)
 ├── requirements.txt          # Python dependencies
 ├── secrets.sh                # Credentials (gitignored)
 └── ballenv/                  # Python 3.11 virtual environment (gitignored)

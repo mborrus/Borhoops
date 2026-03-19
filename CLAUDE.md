@@ -6,29 +6,32 @@ March Madness prediction model for the Kaggle March Machine Learning Mania compe
 
 ## Project Status
 
-Transitioning from Jupyter notebook prototypes to a productionized data pipeline. The v1 notebooks are working and were used for the 2025 Kaggle competition. The next phase (v2) is building an automated ELT pipeline with Airflow, dbt, and Snowflake.
+The v1 notebooks have been extracted into a working Python pipeline (`src/`). The extract → transform → predict flow runs end-to-end via `python src/runner.py`. Next phase is hooking it up to BigQuery + Airflow for automation, then improving the model.
 
 ## Repo Structure
 
 ```
 Borhoops/
-├── original_notebooks/       # v1 Jupyter notebooks (the working prototypes)
-│   ├── Complicated_Elo.ipynb # Main model — custom Elo with travel distance, HFA, MOV, conference mean reversion
-│   ├── Nates_ELO.ipynb       # Benchmark using Nate Silver's published SBCB Elo ratings
-│   ├── Basic_Elo.ipynb       # Simple Elo baseline
-│   ├── EDA.ipynb             # Exploratory data analysis + data wrangling
-│   └── Random_Choice_Input.ipynb  # Random baseline
+├── src/                      # v2 Python pipeline
+│   ├── extract/              # extract_kaggle.py, extract_espn.py
+│   ├── transform/            # transform_espn.py (ESPN → Kaggle format)
+│   ├── predict/              # elo.py (Elo engine), submission.py (I/O + predictions)
+│   └── runner.py             # Orchestrates all steps (--source kaggle|espn|transform|predict)
+├── scripts/                  # One-time data precomputation
+│   ├── build_home_lookup.py  # Geocode team home cities → Home_Lookup.csv
+│   └── build_hfa.py          # Compute home field advantage → HomeFieldAdvantage.csv
+├── tests/                    # 65 tests (pytest)
+├── original_notebooks/       # v1 Jupyter notebooks (reference, no longer primary)
 ├── data/                     # All input data (gitignored), flat by source
 │   ├── kaggle/               # Kaggle competition CSVs (men's M* and women's W*)
 │   ├── nate/                 # Nate Silver SBCB ratings (scraped from Substack)
 │   ├── derived/              # Generated lookup tables (Home_Lookup.csv, HomeFieldAdvantage.csv, espn_kaggle_crosswalk.csv)
 │   └── cbbpy/                # CBBpy ESPN scraper downloads (daily game results + locations)
-├── data_exploration/         # Scripts for data exploration and crosswalk building
 ├── Output/                   # Model prediction CSVs in Kaggle submission format
 ├── config.yaml               # Paths config (data_dir, output_dir)
 ├── requirements.txt          # Python dependencies
 ├── secrets.sh                # Credentials (gitignored)
-└── ballenv/                  # Python 3.11 virtual environment (gitignored)
+└── ballenvy/                 # Python 3.11 virtual environment (gitignored)
 ```
 
 ## Key Data Files for the Elo Model
@@ -63,14 +66,19 @@ Final output is `calc_elo_win_tourney(A, B, boost=1.07)` = `1 / (1 + 10^((B - A)
 
 Goal: Automate the entire Extract → Load → Transform → Predict flow.
 
-- **Orchestration**: Airflow
-- **Transformations**: dbt
-- **Warehouse**: Snowflake
+**Done:**
+- Extract: Kaggle CLI download + ESPN scraper (incremental + backfill)
+- Transform: ESPN → Kaggle format, union with dedup (Kaggle wins)
+- Predict: Elo engine extracted from notebook, runs via `python src/runner.py --source predict`
+- ID crosswalk: ESPN team IDs → Kaggle TeamIDs (`data/derived/espn_kaggle_crosswalk.csv`)
+
+**Next:**
+- **Warehouse**: BigQuery
+- **Orchestration**: Airflow (automate extract + predict)
+- **Model improvements**: TBD (composites, additional features, etc.)
 - **Live data source**: CBBpy (ESPN scraper) for daily game results + locations
 - **Static data**: Kaggle dataset loaded once, refreshed annually
 - **Output**: Publicly accessible predictions
-
-The ID crosswalk from ESPN team IDs to Kaggle TeamIDs needs to be built as a lookup table.
 
 ## Tech Stack
 
@@ -85,7 +93,8 @@ The ID crosswalk from ESPN team IDs to Kaggle TeamIDs needs to be built as a loo
 
 - `main` — original notebook-based project
 - `restructure-bball-fball` — reorganized into bball/fball directories (has shared/ config)
-- `v1` — current working branch, notebooks in original_notebooks/
+- `v1` — original notebook-based working branch
+- `v2` — current working branch, extracted pipeline in src/
 
 ## Kaggle Competition
 

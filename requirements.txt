@@ -55,3 +55,6 @@ tzdata==2025.1
 urllib3==2.3.0
 wcwidth==0.2.13
 webencodings==0.5.1
+scikit-learn>=1.4
+xgboost>=2.0
+joblib>=1.3

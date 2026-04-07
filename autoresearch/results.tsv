@@ -1,0 +1,2 @@
+commit	mean_brier	elapsed_s	status	description
+baseline	0.166206	758.7	keep	XGBoost baseline (n_est=500 depth=2 lr=0.03 lambda=5.0) all 30 features

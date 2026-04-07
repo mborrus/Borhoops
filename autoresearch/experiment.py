@@ -18,18 +18,19 @@ def get_model():
     return Pipeline([
         ("scaler", StandardScaler()),
         ("clf", XGBClassifier(
-            n_estimators=500,
-            max_depth=2,
-            learning_rate=0.03,
+            n_estimators=200,
+            max_depth=3,
+            learning_rate=0.01,
             reg_lambda=5.0,
-            subsample=0.8,
-            colsample_bytree=0.7,
+            subsample=0.9,
+            colsample_bytree=0.6,
+            min_child_weight=5,
             random_state=42,
             eval_metric="logloss",
         )),
     ])
 
 
-# None = use all 30 features. Or specify a list:
+# None = use all 40 features. Or specify a list:
 # FEATURE_SUBSET = ["elo_diff", "elo_pred", "barthag_diff", "massey_avg_diff"]
 FEATURE_SUBSET = None

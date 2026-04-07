@@ -116,12 +116,18 @@ LOOP FOREVER:
 15. **Conference-aware features**: One-hot conference encoding, power-5 indicator
 16. **Transfer learning from regular season**: Pre-train on regular season, fine-tune on tournament
 
-## Feature reference (30 features available)
+## Feature reference (38 features available)
 
-Base: elo_diff, elo_pred, home, day_num, game_count_avg
-Compact: sos_diff, win_streak_diff, rest_days_diff, margin_mean_diff, margin_std_diff
-Detail: off_eff_r10_diff, def_eff_r10_diff, efg_pct_r10_diff, opp_efg_pct_r10_diff, to_rate_r10_diff, or_pct_r10_diff, pace_r10_diff
-Massey: massey_pom_diff, massey_sag_diff, massey_mor_diff, massey_dok_diff, massey_col_diff, massey_avg_diff
-Coach: coach_tenure_diff, coach_change_diff
-Derived: close_win_pct_diff, conf_elo_diff
-Barttorvik: barthag_diff, trank_adjO_diff, trank_adjD_diff
+Base (5): elo_diff, elo_pred, home, day_num, game_count_avg
+Compact (5): sos_diff, win_streak_diff, rest_days_diff, margin_mean_diff, margin_std_diff
+Detail (7): off_eff_r10_diff, def_eff_r10_diff, efg_pct_r10_diff, opp_efg_pct_r10_diff, to_rate_r10_diff, or_pct_r10_diff, pace_r10_diff
+Massey (6): massey_pom_diff, massey_sag_diff, massey_mor_diff, massey_dok_diff, massey_col_diff, massey_avg_diff
+Coach (2): coach_tenure_diff, coach_change_diff
+Derived (2): close_win_pct_diff, conf_elo_diff
+Barttorvik (3): barthag_diff, trank_adjO_diff, trank_adjD_diff
+Odds (3): spread, over_under, implied_prob — NaN during training, available per-game if odds data matched
+Polls (5): poll_rank_diff, poll_momentum_diff, weeks_ranked_diff, poll_points_diff, seed_diff
+
+Note: odds features are NaN during regular-season training (no per-game ESPN ID matching yet).
+Poll and seed features are populated from end-of-season AP poll and tournament seeds.
+Models should handle NaN gracefully (XGBoost/LightGBM do natively, others need imputation).

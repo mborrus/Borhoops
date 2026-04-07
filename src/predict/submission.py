@@ -36,12 +36,18 @@ def load_data(data_dir):
     else:
         womens_results = pd.read_csv(kaggle / "WRegularSeasonCompactResults.csv")
 
-    from train.extended_features import load_seeds, load_massey_rankings, load_coach_data
+    from train.extended_features import (
+        load_seeds, load_massey_rankings, load_coach_data,
+        load_odds, load_polls, load_roster,
+    )
 
     m_seeds = load_seeds(data_dir, "M")
     w_seeds = load_seeds(data_dir, "W")
     massey_per_system, massey_avg = load_massey_rankings(data_dir)
     coach_tenure, coach_changed = load_coach_data(data_dir)
+    odds_lookup, odds_team_avg = load_odds(data_dir)
+    poll_lookup, weeks_ranked = load_polls(data_dir)
+    roster_lookup = load_roster(data_dir)
 
     # DetailedResults — prefer combined, fall back to Kaggle
     combined_m_det = derived / "MRegularSeasonDetailedResults_combined.csv"
@@ -84,6 +90,11 @@ def load_data(data_dir):
         "coach_tenure": coach_tenure,
         "coach_changed": coach_changed,
         "barttorvik": barttorvik,
+        "odds_lookup": odds_lookup,
+        "odds_team_avg": odds_team_avg,
+        "poll_lookup": poll_lookup,
+        "weeks_ranked": weeks_ranked,
+        "roster_lookup": roster_lookup,
     }
 
 

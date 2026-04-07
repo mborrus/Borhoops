@@ -2,11 +2,11 @@
 
 ## Overview
 
-The ML feature pipeline extracts 30 features from the Elo rating loop. All features are computed as `low_team - high_team` differences (lower Kaggle TeamID perspective), matching the Kaggle submission format.
+The ML feature pipeline extracts 40 features from the Elo rating loop and external data sources. All features are computed as `low_team - high_team` differences (lower Kaggle TeamID perspective), matching the Kaggle submission format.
 
 Features are recorded **before** each Elo update — no data leakage within the loop.
 
-## Feature Groups (30 total)
+## Feature Groups (40 total)
 
 ### Base (5) — always available
 | Feature | Description |
@@ -66,6 +66,41 @@ Features are recorded **before** each Elo update — no data leakage within the 
 | `trank_adjO_diff` | Adjusted offensive efficiency |
 | `trank_adjD_diff` | Adjusted defensive efficiency |
 
+### Odds (4) — men's only, 2013+ (coverage varies by season)
+| Feature | Description |
+|---------|-------------|
+| `spread` | Closing point spread from low-team perspective (negative = favored) |
+| `spread_abs` | Absolute spread (expected game closeness) |
+| `implied_prob` | Spread → win probability via `1/(1+10^(spread/15))` |
+| `over_under` | Total points over/under line |
+
+During training: per-game spread from `data/derived/ncaab_odds.csv` (NaN when no line available).
+For tournament predictions: season-average spread differential as proxy.
+
+### Polls (3) — men's only, AP poll, 2003+
+| Feature | Description |
+|---------|-------------|
+| `poll_rank_diff` | AP Top 25 rank difference (unranked teams = 30) |
+| `poll_momentum_diff` | Rank improvement from prior week (positive = climbing) |
+| `weeks_ranked_diff` | Cumulative weeks in Top 25 this season |
+
+DayNum mapped to poll week via `max(1, DayNum // 7)`. Falls back to most recent prior week if no poll for current week.
+
+### Roster (2) — men's only, 2025+ (ESPN API limitation)
+| Feature | Description |
+|---------|-------------|
+| `avg_experience_diff` | Weighted average class year (Fr=1, So=2, Jr=3, Sr=4) |
+| `senior_pct_diff` | Fraction of roster that are seniors |
+
+**Note:** ESPN's roster API only has meaningful data for ~2024+. These features are NaN for all historical training data and effectively unusable for model training until a historical roster source is found.
+
+### Seeds (1) — tournament only
+| Feature | Description |
+|---------|-------------|
+| `seed_diff` | Tournament seed difference (lower = better, unseeded = 17) |
+
+NaN during regular season training. Available at tournament prediction time. XGBoost/LightGBM handle the NaN natively; other models impute to 0.
+
 ## Leakage Strategy
 
 | Feature Group | Training (Elo loop) | Tournament Predictions |
@@ -73,7 +108,10 @@ Features are recorded **before** each Elo update — no data leakage within the 
 | Rolling (compact + detail) | Uses only past games (deque) | End-of-season state |
 | Massey/Coach/Barttorvik | End-of-season values (mild within-season leakage) | Current season values |
 | Barttorvik | **Previous season** (`season - 1`) for leak-free training | **Current season** at prediction time |
-| Seeds | Not used (unavailable during regular season) | Current season seed |
+| Odds | Per-game closing line (no leakage — line set before game) | Season-average spread differential |
+| Polls | Most recent AP poll before game date | Latest available poll week |
+| Roster | Current season roster data | Current season |
+| Seeds | NaN (unavailable during regular season) | Current season seed |
 
 ## Data Dependencies
 
@@ -84,6 +122,9 @@ Features are recorded **before** each Elo update — no data leakage within the 
 | Massey | `MMasseyOrdinals.csv` (5.8M rows) | `load_massey_rankings()` |
 | Coach | `MTeamCoaches.csv` | `load_coach_data()` |
 | Barttorvik | `data/derived/barttorvik_ratings.csv` | `load_data()` |
+| Odds | `data/derived/ncaab_odds.csv` (27K rows) | `load_odds()` |
+| Polls | `data/derived/poll_rankings.csv` (22K rows) | `load_polls()` |
+| Roster | `data/derived/roster_experience.csv` (734 rows) | `load_roster()` |
 | Seeds | `MNCAATourneySeeds.csv` | `load_seeds()` |
 
 ## Code Location

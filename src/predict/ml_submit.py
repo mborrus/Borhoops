@@ -26,7 +26,14 @@ def _get_extra_data(data, gender):
     coach_tenure = data.get("coach_tenure", {}) if gender == "M" else {}
     coach_changed = data.get("coach_changed", {}) if gender == "M" else {}
     barttorvik = data.get("barttorvik") if gender == "M" else None
-    return detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik
+    # Odds/polls/roster are men's only for now (ESPN data source is men's)
+    odds_lookup = data.get("odds_lookup", {}) if gender == "M" else {}
+    odds_team_avg = data.get("odds_team_avg", {}) if gender == "M" else {}
+    poll_lookup = data.get("poll_lookup", {}) if gender == "M" else {}
+    weeks_ranked = data.get("weeks_ranked", {}) if gender == "M" else {}
+    roster_lookup = data.get("roster_lookup", {}) if gender == "M" else {}
+    return (detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed,
+            barttorvik, odds_lookup, odds_team_avg, poll_lookup, weeks_ranked, roster_lookup)
 
 
 def predict_gender(data, gender, model_dir, submission_df):
@@ -40,7 +47,9 @@ def predict_gender(data, gender, model_dir, submission_df):
     hfa_dict = _build_hfa_dict(data["hfa"], gender)
     location_dict = _build_location_dict(data["home_lookup"], gender)
 
-    detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik = _get_extra_data(data, gender)
+    (detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed,
+     barttorvik, odds_lookup, odds_team_avg, poll_lookup, weeks_ranked,
+     roster_lookup) = _get_extra_data(data, gender)
     barttorvik_lookup = _build_barttorvik_lookup(barttorvik)
 
     # Run Elo on all data to get end-of-season ratings + states
@@ -56,6 +65,12 @@ def predict_gender(data, gender, model_dir, submission_df):
         coach_tenure=coach_tenure,
         coach_changed=coach_changed,
         barttorvik=barttorvik,
+        odds_lookup=odds_lookup,
+        odds_team_avg=odds_team_avg,
+        poll_lookup=poll_lookup,
+        weeks_ranked=weeks_ranked,
+        roster_lookup=roster_lookup,
+        seeds=seeds,
     )
 
     # Determine the prediction season from submission IDs
@@ -73,6 +88,9 @@ def predict_gender(data, gender, model_dir, submission_df):
             coach_tenure=coach_tenure, coach_changed=coach_changed,
             conf_elo_means=conf_elo_means, conferences=data[conf_key],
             barttorvik_lookup=barttorvik_lookup,
+            odds_team_avg=odds_team_avg,
+            poll_lookup=poll_lookup, weeks_ranked=weeks_ranked,
+            roster_lookup=roster_lookup,
         ))
 
     X = pd.DataFrame(feature_rows)[FEATURE_COLS].values

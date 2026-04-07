@@ -37,11 +37,14 @@ from extract.extract_polls import extract_current as polls_current
 from extract.extract_polls import extract_backfill as polls_backfill
 from extract.extract_vegas import extract_current as vegas_current
 from extract.extract_vegas import extract_backfill as vegas_backfill
+from extract.extract_roster import extract_current as roster_current
+from extract.extract_roster import extract_backfill as roster_backfill
 from transform.transform_espn import transform_and_union
 from transform.transform_barttorvik import transform_barttorvik
 from transform.transform_odds import transform_odds
 from transform.transform_polls import transform_polls
 from transform.transform_vegas import transform_vegas
+from transform.transform_roster import transform_roster
 from predict.submission import predict as run_predict
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -56,9 +59,9 @@ def main():
     parser = argparse.ArgumentParser(description="Run data extractors")
     parser.add_argument(
         "--source",
-        choices=["kaggle", "espn", "barttorvik", "odds", "polls", "vegas",
+        choices=["kaggle", "espn", "barttorvik", "odds", "polls", "vegas", "roster",
                  "transform", "transform-barttorvik", "transform-odds",
-                 "transform-polls", "transform-vegas", "predict"],
+                 "transform-polls", "transform-vegas", "transform-roster", "predict"],
         help="Run a single source",
     )
     parser.add_argument("--backfill", action="store_true", help="Full backfill")
@@ -102,6 +105,11 @@ def main():
                     results[source] = vegas_backfill(data_dir)
                 else:
                     results[source] = vegas_current(data_dir)
+            elif source == "roster":
+                if args.backfill:
+                    results[source] = roster_backfill(data_dir)
+                else:
+                    results[source] = roster_current(data_dir)
             elif source == "transform":
                 results[source] = transform_and_union(data_dir)
             elif source == "transform-barttorvik":
@@ -112,6 +120,8 @@ def main():
                 results[source] = transform_polls(data_dir)
             elif source == "transform-vegas":
                 results[source] = transform_vegas(data_dir)
+            elif source == "transform-roster":
+                results[source] = transform_roster(data_dir)
             elif source == "predict":
                 output_dir = REPO_ROOT / config["output_dir"]
                 results[source] = run_predict(data_dir, output_dir)

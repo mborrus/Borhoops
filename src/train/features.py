@@ -16,7 +16,10 @@ from predict.elo import (
     _travel_miles, distance_to_elo_impact, get_advantage,
     k_factor, point_differential_scaler, update_elo, calc_elo_win_tourney,
 )
-from train.extended_features import _possessions, POSSESSIONS_FTA_COEFF
+from train.extended_features import (
+    _possessions, POSSESSIONS_FTA_COEFF,
+    ODDS_COLS, POLL_COLS, ROSTER_COLS,
+)
 
 # -- Feature column groups (all are low_team - high_team diffs) ----------------
 
@@ -31,9 +34,11 @@ MASSEY_COLS = ["massey_pom_diff", "massey_sag_diff", "massey_mor_diff",
 COACH_COLS = ["coach_tenure_diff", "coach_change_diff"]
 DERIVED_COLS = ["close_win_pct_diff", "conf_elo_diff"]
 BARTTORVIK_COLS = ["barthag_diff", "trank_adjO_diff", "trank_adjD_diff"]
+SEED_COLS = ["seed_diff"]
 
 FEATURE_COLS = (BASE_COLS + COMPACT_COLS + DETAIL_COLS +
-                MASSEY_COLS + COACH_COLS + DERIVED_COLS + BARTTORVIK_COLS)
+                MASSEY_COLS + COACH_COLS + DERIVED_COLS + BARTTORVIK_COLS +
+                ODDS_COLS + POLL_COLS + ROSTER_COLS + SEED_COLS)
 
 
 # -- Rolling per-team state (compact + detail) ---------------------------------
@@ -157,7 +162,10 @@ def build_features(results, conferences, hfa_dict, location_dict,
                    k_start=56, k_end=38, hfa_scalar=26, mov_avg=12,
                    massey_per_system=None, massey_avg=None,
                    coach_tenure=None, coach_changed=None,
-                   barttorvik=None):
+                   barttorvik=None,
+                   odds_lookup=None, odds_team_avg=None,
+                   poll_lookup=None, weeks_ranked=None,
+                   roster_lookup=None, seeds=None):
     """Run the Elo loop and collect per-game feature rows for specified seasons.
 
     Features are recorded *before* the Elo update for each game — no data leakage.
@@ -306,6 +314,37 @@ def build_features(results, conferences, hfa_dict, location_dict,
                 feat["trank_adjO_diff"] = low_bt.get("AdjO", np.nan) - high_bt.get("AdjO", np.nan)
                 feat["trank_adjD_diff"] = low_bt.get("AdjD", np.nan) - high_bt.get("AdjD", np.nan)
 
+                # Odds
+                if odds_lookup:
+                    from train.extended_features import odds_game_features
+                    feat.update(odds_game_features(odds_lookup, season, day_num, low, high))
+                else:
+                    for col in ODDS_COLS:
+                        feat[col] = np.nan
+
+                # Polls
+                if poll_lookup and weeks_ranked is not None:
+                    from train.extended_features import poll_game_features
+                    feat.update(poll_game_features(poll_lookup, weeks_ranked, season, day_num, low, high))
+                else:
+                    for col in POLL_COLS:
+                        feat[col] = 0
+
+                # Roster
+                if roster_lookup:
+                    from train.extended_features import roster_matchup_features
+                    feat.update(roster_matchup_features(roster_lookup, season, low, high))
+                else:
+                    for col in ROSTER_COLS:
+                        feat[col] = np.nan
+
+                # Seeds (NaN for regular season — only available at tournament time)
+                if seeds:
+                    from train.extended_features import seed_matchup_features
+                    feat.update(seed_matchup_features(seeds, season, low, high))
+                else:
+                    feat["seed_diff"] = np.nan
+
                 rows.append(feat)
 
             # Track close games
@@ -365,7 +404,10 @@ def matchup_features(elo_a, elo_b, game_counts, team_a, team_b,
                      massey_per_system=None, massey_avg=None,
                      coach_tenure=None, coach_changed=None,
                      conf_elo_means=None, conferences=None,
-                     barttorvik_lookup=None):
+                     barttorvik_lookup=None,
+                     odds_team_avg=None,
+                     poll_lookup=None, weeks_ranked=None,
+                     roster_lookup=None):
     """Build a feature dict for a neutral-site tournament matchup.
 
     team_a should be the lower TeamID. Uses current-season data for lookups.
@@ -403,10 +445,12 @@ def matchup_features(elo_a, elo_b, game_counts, team_a, team_b,
         for col in DETAIL_COLS:
             feat[col] = np.nan
 
-    # Seeds (for display/analysis, not in FEATURE_COLS)
+    # Seeds
     if seeds and season:
         from train.extended_features import seed_matchup_features
         feat.update(seed_matchup_features(seeds, season, team_a, team_b))
+    else:
+        feat["seed_diff"] = np.nan
 
     # Massey
     if massey_per_system and massey_avg and season:
@@ -448,5 +492,29 @@ def matchup_features(elo_a, elo_b, game_counts, team_a, team_b,
         feat["barthag_diff"] = np.nan
         feat["trank_adjO_diff"] = np.nan
         feat["trank_adjD_diff"] = np.nan
+
+    # Odds (season-average spread as tournament proxy)
+    if odds_team_avg and season:
+        from train.extended_features import odds_matchup_features
+        feat.update(odds_matchup_features(odds_team_avg, season, team_a, team_b))
+    else:
+        for col in ODDS_COLS:
+            feat[col] = np.nan
+
+    # Polls (latest week)
+    if poll_lookup and weeks_ranked is not None and season:
+        from train.extended_features import poll_matchup_features
+        feat.update(poll_matchup_features(poll_lookup, weeks_ranked, season, team_a, team_b))
+    else:
+        for col in POLL_COLS:
+            feat[col] = 0
+
+    # Roster
+    if roster_lookup and season:
+        from train.extended_features import roster_matchup_features
+        feat.update(roster_matchup_features(roster_lookup, season, team_a, team_b))
+    else:
+        for col in ROSTER_COLS:
+            feat[col] = np.nan
 
     return feat

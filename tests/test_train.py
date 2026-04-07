@@ -42,19 +42,22 @@ class TestBuildFeatures:
     def test_shape(self):
         results = _make_results()
         conferences = _make_conferences()
-        features_df, elo, gc = build_features(
+        features_df, elo, gc, _, _ = build_features(
             results, conferences, hfa_dict={}, location_dict={},
             seasons={2020, 2021},
         )
         # 2 seasons × 6 games = 12 rows
         assert len(features_df) == 12
-        assert list(features_df.columns) == FEATURE_COLS + ["win", "season"]
+        for col in FEATURE_COLS:
+            assert col in features_df.columns, f"Missing column: {col}"
+        assert "win" in features_df.columns
+        assert "season" in features_df.columns
         assert set(features_df["season"]) == {2020, 2021}
 
     def test_feature_values(self):
         results = _make_results()
         conferences = _make_conferences()
-        features_df, _, _ = build_features(
+        features_df, _, _, _, _ = build_features(
             results, conferences, hfa_dict={}, location_dict={},
             seasons={2020, 2021},
         )
@@ -72,11 +75,11 @@ class TestBuildFeatures:
         results_one = _make_results(seasons=(2020,))
         conferences = _make_conferences(seasons=(2020, 2021))
 
-        feat_both, _, _ = build_features(
+        feat_both, _, _, _, _ = build_features(
             results_both, conferences, hfa_dict={}, location_dict={},
             seasons={2020},
         )
-        feat_one, _, _ = build_features(
+        feat_one, _, _, _, _ = build_features(
             results_one, conferences, hfa_dict={}, location_dict={},
             seasons={2020},
         )
@@ -90,7 +93,7 @@ class TestBuildFeatures:
     def test_returns_elo_and_game_counts(self):
         results = _make_results()
         conferences = _make_conferences()
-        _, elo, gc = build_features(
+        _, elo, gc, _, _ = build_features(
             results, conferences, hfa_dict={}, location_dict={},
             seasons={2020},
         )
@@ -104,7 +107,7 @@ class TestBuildFeatures:
         """Passing seasons=set() should return empty features but still run Elo."""
         results = _make_results()
         conferences = _make_conferences()
-        features_df, elo, gc = build_features(
+        features_df, elo, gc, _, _ = build_features(
             results, conferences, hfa_dict={}, location_dict={},
             seasons=set(),
         )

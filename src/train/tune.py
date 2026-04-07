@@ -72,7 +72,7 @@ def sweep(data_dir="../data", val_year=2024):
         train_seasons = [s for s in all_seasons if s < val_year]
 
         # Build training features
-        features_df, elo_ratings, game_counts = build_features(
+        features_df, elo_ratings, game_counts, _, _ = build_features(
             results=results, conferences=conferences,
             hfa_dict=hfa_dict, location_dict=location_dict,
             seasons=set(train_seasons),

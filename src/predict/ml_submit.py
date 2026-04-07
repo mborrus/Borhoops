@@ -9,11 +9,24 @@ import pandas as pd
 
 from predict.elo import add_game_counts
 from predict.submission import load_data, extract_game_info, _build_hfa_dict, _build_location_dict
-from train.features import build_features, matchup_features, FEATURE_COLS
+from train.features import build_features, matchup_features, FEATURE_COLS, _build_barttorvik_lookup
 
 
 MODEL_NAMES = ["random_forest", "logistic", "svm", "xgboost"]
 DISPLAY_NAMES = {"random_forest": "RF", "logistic": "Logistic", "svm": "SVM", "xgboost": "XGBoost"}
+
+
+def _get_extra_data(data, gender):
+    """Extract all extra feature data for the given gender."""
+    detailed_key = "mens_detailed" if gender == "M" else "womens_detailed"
+    detailed = data.get(detailed_key)
+    seeds = data.get("m_seeds", {}) if gender == "M" else data.get("w_seeds", {})
+    massey_per = data.get("massey_per_system", {}) if gender == "M" else {}
+    massey_avg = data.get("massey_avg", {}) if gender == "M" else {}
+    coach_tenure = data.get("coach_tenure", {}) if gender == "M" else {}
+    coach_changed = data.get("coach_changed", {}) if gender == "M" else {}
+    barttorvik = data.get("barttorvik") if gender == "M" else None
+    return detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik
 
 
 def predict_gender(data, gender, model_dir, submission_df):
@@ -26,32 +39,45 @@ def predict_gender(data, gender, model_dir, submission_df):
 
     hfa_dict = _build_hfa_dict(data["hfa"], gender)
     location_dict = _build_location_dict(data["home_lookup"], gender)
-    all_seasons = sorted(results["Season"].unique())
 
-    # Run Elo on all data to get end-of-season ratings + game counts
-    _, elo_ratings, game_counts = build_features(
+    detailed, seeds, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik = _get_extra_data(data, gender)
+    barttorvik_lookup = _build_barttorvik_lookup(barttorvik)
+
+    # Run Elo on all data to get end-of-season ratings + states
+    _, elo_ratings, game_counts, team_states, conf_elo_means = build_features(
         results=results,
         conferences=data[conf_key],
         hfa_dict=hfa_dict,
         location_dict=location_dict,
-        seasons=set(),  # don't collect features, just run the loop
+        seasons=set(),
+        detailed_results=detailed,
+        massey_per_system=massey_per,
+        massey_avg=massey_avg,
+        coach_tenure=coach_tenure,
+        coach_changed=coach_changed,
+        barttorvik=barttorvik,
     )
 
-    # Build feature matrix for submission matchups
-    prefix = "M" if gender == "M" else "W"
-    gender_rows = submission_df[submission_df["ID"].str.startswith(f"{prefix[0]}") |
-                                submission_df["Season"].between(1000, 9999)]
+    # Determine the prediction season from submission IDs
+    season = submission_df["Season"].iloc[0] if "Season" in submission_df.columns else 2026
 
     feature_rows = []
     for _, row in submission_df.iterrows():
         team_a, team_b = row["TeamID1"], row["TeamID2"]
         elo_a = elo_ratings.get(team_a, 1500)
         elo_b = elo_ratings.get(team_b, 1500)
-        feature_rows.append(matchup_features(elo_a, elo_b, game_counts, team_a, team_b))
+        feature_rows.append(matchup_features(
+            elo_a, elo_b, game_counts, team_a, team_b,
+            team_states=team_states, season=season, seeds=seeds,
+            massey_per_system=massey_per, massey_avg=massey_avg,
+            coach_tenure=coach_tenure, coach_changed=coach_changed,
+            conf_elo_means=conf_elo_means, conferences=data[conf_key],
+            barttorvik_lookup=barttorvik_lookup,
+        ))
 
     X = pd.DataFrame(feature_rows)[FEATURE_COLS].values
+    X = np.nan_to_num(X, nan=0.0)
 
-    # Predict with each model
     model_dir = Path(model_dir)
     preds_by_model = {}
     for name in MODEL_NAMES:
@@ -82,12 +108,10 @@ def main():
         submission["ID"].apply(extract_game_info).tolist()
     )
 
-    # Split submission by gender based on team ID ranges
-    # Men's teams: 1100-1499, Women's teams: 3100-3499
     mens_mask = submission["TeamID1"] < 3000
     womens_mask = submission["TeamID1"] >= 3000
 
-    all_preds = {}  # {model_name: full pred array}
+    all_preds = {}
 
     for gender, mask in [("M", mens_mask), ("W", womens_mask)]:
         sub = submission[mask]
@@ -102,7 +126,6 @@ def main():
                 all_preds[name] = np.full(len(submission), np.nan)
             all_preds[name][mask.values] = pred_arr
 
-    # Write one CSV per model + ensemble
     ensemble_preds = []
     for name in MODEL_NAMES:
         if name not in all_preds:

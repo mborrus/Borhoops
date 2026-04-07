@@ -68,7 +68,7 @@ def run():
             conferences = data[conf_key][data[conf_key]["Season"] <= eval_year]
             train_seasons = [s for s in sorted(results_up_to["Season"].unique()) if s < eval_year]
 
-            features_df, elo_ratings, game_counts = build_features(
+            features_df, elo_ratings, game_counts, _, _ = build_features(
                 results=results_up_to, conferences=conferences,
                 hfa_dict=hfa_dict, location_dict=location_dict,
                 seasons=set(train_seasons),

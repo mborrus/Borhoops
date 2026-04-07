@@ -10,6 +10,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.calibration import CalibratedClassifierCV
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from xgboost import XGBClassifier
 
 from predict.elo import add_game_counts
@@ -17,37 +19,49 @@ from predict.submission import load_data, _build_hfa_dict, _build_location_dict
 from train.features import build_features, FEATURE_COLS
 
 
-# ── Model configuration ─────────────────────────────────────────────────────
-# TODO: Tune these. Each entry is (short_name, sklearn-compatible estimator).
-# Considerations:
-#   - RF: more trees = smoother but slower. max_depth controls overfitting.
-#   - Logistic: already well-calibrated; max_iter needs to be enough to converge.
-#   - SVM: LinearSVC is fast but needs CalibratedClassifierCV for probabilities.
-#     cv=3 vs cv=5 trades calibration quality for speed.
-#   - XGBoost: learning_rate + n_estimators is the main knob. Lower LR + more
-#     trees = better but slower. max_depth controls tree complexity.
-#
-# These defaults are reasonable starting points. Adjust and re-run.
-
 def get_models():
-    """Return list of (name, estimator) tuples."""
+    """Return list of (name, estimator) tuples. All wrapped in StandardScaler pipelines."""
     return [
-        ("random_forest", RandomForestClassifier(
-            n_estimators=300, max_depth=4, min_samples_leaf=20, random_state=42,
-        )),
-        ("logistic", LogisticRegression(
-            max_iter=1000, C=0.01, random_state=42,
-        )),
-        ("svm", CalibratedClassifierCV(
-            LinearSVC(max_iter=5000, C=0.01, random_state=42), cv=3,
-        )),
-        ("xgboost", XGBClassifier(
-            n_estimators=200, max_depth=3, random_state=42, eval_metric="logloss",
-        )),
+        ("random_forest", Pipeline([
+            ("scaler", StandardScaler()),
+            ("clf", RandomForestClassifier(
+                n_estimators=300, max_depth=4, min_samples_leaf=20, random_state=42,
+            )),
+        ])),
+        ("logistic", Pipeline([
+            ("scaler", StandardScaler()),
+            ("clf", LogisticRegression(
+                max_iter=1000, C=0.01, random_state=42,
+            )),
+        ])),
+        ("svm", Pipeline([
+            ("scaler", StandardScaler()),
+            ("clf", CalibratedClassifierCV(
+                LinearSVC(max_iter=5000, C=0.01, random_state=42), cv=3,
+            )),
+        ])),
+        ("xgboost", Pipeline([
+            ("scaler", StandardScaler()),
+            ("clf", XGBClassifier(
+                n_estimators=500, max_depth=2, learning_rate=0.03,
+                reg_lambda=5.0, subsample=0.8, colsample_bytree=0.7,
+                random_state=42, eval_metric="logloss",
+            )),
+        ])),
     ]
 
 
-# ── Training pipeline ────────────────────────────────────────────────────────
+def _get_extra_data(data, gender):
+    """Extract all extra feature data for the given gender."""
+    detailed_key = "mens_detailed" if gender == "M" else "womens_detailed"
+    detailed = data.get(detailed_key)
+    massey_per = data.get("massey_per_system", {}) if gender == "M" else {}
+    massey_avg = data.get("massey_avg", {}) if gender == "M" else {}
+    coach_tenure = data.get("coach_tenure", {}) if gender == "M" else {}
+    coach_changed = data.get("coach_changed", {}) if gender == "M" else {}
+    barttorvik = data.get("barttorvik") if gender == "M" else None
+    return detailed, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik
+
 
 def train_gender(data, gender, test_year, output_dir):
     """Train all models for one gender, save to disk."""
@@ -63,19 +77,28 @@ def train_gender(data, gender, test_year, output_dir):
     all_seasons = sorted(results["Season"].unique())
     train_seasons = [s for s in all_seasons if s < test_year]
 
+    detailed, massey_per, massey_avg, coach_tenure, coach_changed, barttorvik = _get_extra_data(data, gender)
+
     print(f"\n{gender}: building features for seasons {train_seasons[0]}-{train_seasons[-1]}")
 
-    features_df, _, _ = build_features(
+    features_df, _, _, _, _ = build_features(
         results=results,
         conferences=data[conf_key],
         hfa_dict=hfa_dict,
         location_dict=location_dict,
         seasons=set(train_seasons),
+        detailed_results=detailed,
+        massey_per_system=massey_per,
+        massey_avg=massey_avg,
+        coach_tenure=coach_tenure,
+        coach_changed=coach_changed,
+        barttorvik=barttorvik,
     )
 
     X = features_df[FEATURE_COLS].values
+    X = np.nan_to_num(X, nan=0.0)
     y = features_df["win"].values
-    print(f"{gender}: {len(X)} training samples, {y.mean():.1%} lower-ID win rate")
+    print(f"{gender}: {len(X)} training samples, {len(FEATURE_COLS)} features, {y.mean():.1%} lower-ID win rate")
 
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -85,7 +108,7 @@ def train_gender(data, gender, test_year, output_dir):
         model.fit(X, y)
         path = output_dir / f"{gender}_{name}.joblib"
         joblib.dump(model, path)
-        print(f"  Saved → {path}")
+        print(f"  Saved -> {path}")
 
 
 def main():

@@ -1,4 +1,4 @@
-"""Compute additional features from detailed results, seeds, and Massey ordinals."""
+"""Compute additional features from detailed results, seeds, Massey ordinals, and coaches."""
 
 import numpy as np
 import pandas as pd
@@ -26,7 +26,6 @@ def team_season_stats(detailed_results, season):
 
     stats = {}
 
-    # Process each team's stats as both winner and loser
     for _, row in df.iterrows():
         for role, opp_role in [("W", "L"), ("L", "W")]:
             team = row[f"{role}TeamID"]
@@ -36,12 +35,10 @@ def team_season_stats(detailed_results, season):
                     "to_rate", "opp_to_rate", "or_pct", "ft_rate",
                 ]}
 
-            # Offensive possessions
             off_poss = _possessions(
                 row[f"{role}FGA"], row[f"{role}OR"],
                 row[f"{role}TO"], row[f"{role}FTA"]
             )
-            # Defensive possessions
             def_poss = _possessions(
                 row[f"{opp_role}FGA"], row[f"{opp_role}OR"],
                 row[f"{opp_role}TO"], row[f"{opp_role}FTA"]
@@ -54,7 +51,6 @@ def team_season_stats(detailed_results, season):
                 stats[team]["def_eff"].append(row[f"{opp_role}Score"] / def_poss * 100)
                 stats[team]["opp_to_rate"].append(row[f"{opp_role}TO"] / def_poss)
 
-            # Effective FG%: (FGM + 0.5 * FGM3) / FGA
             if row[f"{role}FGA"] > 0:
                 stats[team]["efg_pct"].append(
                     (row[f"{role}FGM"] + 0.5 * row[f"{role}FGM3"]) / row[f"{role}FGA"]
@@ -64,16 +60,13 @@ def team_season_stats(detailed_results, season):
                     (row[f"{opp_role}FGM"] + 0.5 * row[f"{opp_role}FGM3"]) / row[f"{opp_role}FGA"]
                 )
 
-            # Offensive rebound %: OR / (OR + opp DR)
             total_or = row[f"{role}OR"] + row[f"{opp_role}DR"]
             if total_or > 0:
                 stats[team]["or_pct"].append(row[f"{role}OR"] / total_or)
 
-            # Free throw rate: FTA / FGA
             if row[f"{role}FGA"] > 0:
                 stats[team]["ft_rate"].append(row[f"{role}FTA"] / row[f"{role}FGA"])
 
-    # Average all lists
     return {
         team: {k: np.mean(v) if v else 0.0 for k, v in team_stats.items()}
         for team, team_stats in stats.items()
@@ -100,11 +93,12 @@ def load_seeds(data_dir, gender):
     """Load {(Season, TeamID): seed_num} dict."""
     prefix = "M" if gender == "M" else "W"
     path = Path(data_dir) / "kaggle" / f"{prefix}NCAATourneySeeds.csv"
+    if not path.exists():
+        return {}
     df = pd.read_csv(path)
     seeds = {}
     for _, row in df.iterrows():
         seed_str = row["Seed"]
-        # Parse "W01" / "W01a" / "W01b" → 1
         seed_num = int(seed_str[1:3])
         seeds[(row["Season"], row["TeamID"])] = seed_num
     return seeds
@@ -117,31 +111,95 @@ def seed_matchup_features(seeds, season, team_a, team_b):
     return {"seed_diff": seed_a - seed_b}
 
 
-# -- Massey ordinals ----------------------------------------------------------
+# -- Massey ordinals (per-system) ---------------------------------------------
 
-def load_massey_rankings(data_dir, systems=("POM", "MOR", "SAG", "DOK", "COL")):
-    """Load end-of-season Massey ordinal ranks for selected systems.
+MASSEY_SYSTEMS = ("POM", "SAG", "MOR", "DOK", "COL")
+MASSEY_COLS = [f"massey_{s.lower()}_diff" for s in MASSEY_SYSTEMS] + ["massey_avg_diff"]
 
-    Returns {(Season, TeamID): avg_rank} — average rank across systems.
+
+def load_massey_rankings(data_dir, systems=MASSEY_SYSTEMS):
+    """Load end-of-season Massey ordinal ranks -- per-system and average.
+
+    Returns:
+        per_system: {system_name: {(Season, TeamID): rank}}
+        avg:        {(Season, TeamID): avg_rank}
     """
     path = Path(data_dir) / "kaggle" / "MMasseyOrdinals.csv"
     if not path.exists():
-        return {}
+        return {}, {}
 
     df = pd.read_csv(path)
     df = df[df["SystemName"].isin(systems)]
 
-    # Use latest ranking day per season per system per team
     idx = df.groupby(["Season", "SystemName", "TeamID"])["RankingDayNum"].idxmax()
     latest = df.loc[idx]
 
-    # Average across systems
-    avg = latest.groupby(["Season", "TeamID"])["OrdinalRank"].mean()
-    return avg.to_dict()
+    per_system = {}
+    for sys_name in systems:
+        sys_df = latest[latest["SystemName"] == sys_name]
+        per_system[sys_name] = {
+            (row.Season, row.TeamID): row.OrdinalRank
+            for row in sys_df.itertuples()
+        }
+
+    avg = latest.groupby(["Season", "TeamID"])["OrdinalRank"].mean().to_dict()
+    return per_system, avg
 
 
-def massey_matchup_features(massey_ranks, season, team_a, team_b):
-    """Massey rank difference. Lower rank = better. Unknown teams get 200."""
-    rank_a = massey_ranks.get((season, team_a), 200)
-    rank_b = massey_ranks.get((season, team_b), 200)
-    return {"massey_rank_diff": rank_a - rank_b}
+def massey_matchup_features(massey_per_system, massey_avg, season, team_a, team_b):
+    """Per-system and average Massey rank differences. Unknown teams get NaN."""
+    feats = {}
+    for sys_name in MASSEY_SYSTEMS:
+        ranks = massey_per_system.get(sys_name, {})
+        rank_a = ranks.get((season, team_a), np.nan)
+        rank_b = ranks.get((season, team_b), np.nan)
+        feats[f"massey_{sys_name.lower()}_diff"] = rank_a - rank_b
+    rank_a = massey_avg.get((season, team_a), np.nan)
+    rank_b = massey_avg.get((season, team_b), np.nan)
+    feats["massey_avg_diff"] = rank_a - rank_b
+    return feats
+
+
+# -- Coach tenure -------------------------------------------------------------
+
+def load_coach_data(data_dir):
+    """Load coach tenure and change indicators from MTeamCoaches.csv.
+
+    Returns:
+        tenure:  {(Season, TeamID): years_with_coach}
+        changed: {(Season, TeamID): 1 if new coach this season, else 0}
+    """
+    path = Path(data_dir) / "kaggle" / "MTeamCoaches.csv"
+    if not path.exists():
+        return {}, {}
+
+    df = pd.read_csv(path)
+    idx = df.groupby(["Season", "TeamID"])["LastDayNum"].idxmax()
+    df = df.loc[idx].sort_values(["TeamID", "Season"])
+
+    tenure = {}
+    changed = {}
+    prev_coach = {}
+
+    for _, row in df.iterrows():
+        team, season, coach = row["TeamID"], row["Season"], row["CoachName"]
+        prev = prev_coach.get(team)
+        if prev and prev[0] == coach:
+            years = prev[1] + 1
+            is_new = 0
+        else:
+            years = 1
+            is_new = 1 if prev else 0
+        tenure[(season, team)] = years
+        changed[(season, team)] = is_new
+        prev_coach[team] = (coach, years)
+
+    return tenure, changed
+
+
+def coach_matchup_features(tenure, changed, season, team_a, team_b):
+    """Coach tenure diff and coach change diff."""
+    return {
+        "coach_tenure_diff": tenure.get((season, team_a), 1) - tenure.get((season, team_b), 1),
+        "coach_change_diff": changed.get((season, team_a), 0) - changed.get((season, team_b), 0),
+    }

@@ -36,9 +36,40 @@ def load_data(data_dir):
     else:
         womens_results = pd.read_csv(kaggle / "WRegularSeasonCompactResults.csv")
 
+    from train.extended_features import load_seeds, load_massey_rankings, load_coach_data
+
+    m_seeds = load_seeds(data_dir, "M")
+    w_seeds = load_seeds(data_dir, "W")
+    massey_per_system, massey_avg = load_massey_rankings(data_dir)
+    coach_tenure, coach_changed = load_coach_data(data_dir)
+
+    # DetailedResults — prefer combined, fall back to Kaggle
+    combined_m_det = derived / "MRegularSeasonDetailedResults_combined.csv"
+    combined_w_det = derived / "WRegularSeasonDetailedResults_combined.csv"
+
+    if combined_m_det.exists():
+        mens_detailed = pd.read_csv(combined_m_det)
+    elif (kaggle / "MRegularSeasonDetailedResults.csv").exists():
+        mens_detailed = pd.read_csv(kaggle / "MRegularSeasonDetailedResults.csv")
+    else:
+        mens_detailed = pd.DataFrame()
+
+    if combined_w_det.exists():
+        womens_detailed = pd.read_csv(combined_w_det)
+    elif (kaggle / "WRegularSeasonDetailedResults.csv").exists():
+        womens_detailed = pd.read_csv(kaggle / "WRegularSeasonDetailedResults.csv")
+    else:
+        womens_detailed = pd.DataFrame()
+
+    # Barttorvik T-Rank ratings
+    barttorvik_path = derived / "barttorvik_ratings.csv"
+    barttorvik = pd.read_csv(barttorvik_path) if barttorvik_path.exists() else pd.DataFrame()
+
     return {
         "mens_results": mens_results,
         "womens_results": womens_results,
+        "mens_detailed": mens_detailed,
+        "womens_detailed": womens_detailed,
         "mens_teams": pd.read_csv(kaggle / "MTeams.csv"),
         "womens_teams": pd.read_csv(kaggle / "WTeams.csv"),
         "mens_conf": pd.read_csv(kaggle / "MTeamConferences.csv"),
@@ -46,6 +77,13 @@ def load_data(data_dir):
         "submission": pd.read_csv(kaggle / "SampleSubmissionStage2.csv"),
         "hfa": pd.read_csv(derived / "HomeFieldAdvantage.csv"),
         "home_lookup": pd.read_csv(derived / "Home_Lookup.csv"),
+        "m_seeds": m_seeds,
+        "w_seeds": w_seeds,
+        "massey_per_system": massey_per_system,
+        "massey_avg": massey_avg,
+        "coach_tenure": coach_tenure,
+        "coach_changed": coach_changed,
+        "barttorvik": barttorvik,
     }
 
 

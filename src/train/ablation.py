@@ -136,7 +136,7 @@ def run_ablation():
 
             # Run Elo to get features + ratings
             from train.features import build_features as bf
-            features_df, elo_ratings, game_counts = bf(
+            features_df, elo_ratings, game_counts, _, _ = bf(
                 results=results_up_to,
                 conferences=conferences,
                 hfa_dict=hfa_dict,

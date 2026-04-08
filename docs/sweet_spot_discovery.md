@@ -138,6 +138,21 @@ The edge persists as we widen the Vegas probability range:
 
 Even at 40-60% (spread up to ~3 points), 3,526 bets at 74% win rate over 10 years. However, wider ranges mean worse odds (betting a -150 favorite instead of -110 cuts profit significantly).
 
+## Tournament vs Regular Season
+
+The edge exists ONLY in regular season. On tournament games, every approach loses:
+
+| Approach | Tournament ROI |
+|---|---|
+| Residual (11 feat) | -11% |
+| Residual (25 feat) | -13% |
+| Residual (behavioral) | -45% |
+| Detection (11 feat + spread) | -20% |
+| Detection (25 feat + spread) | -27% |
+| Detection (behavioral + spread) | -52% |
+
+Tournament lines are the sharpest in the market — highest volume, most attention from sharp bettors. The sweet spot edge exists in **regular season only**, likely because pick'em games between non-marquee teams receive less market scrutiny.
+
 ## Caveats
 
 1. **Moneyline odds assumption**: We assumed -110 (even money) for all sweet spot bets. Real moneyline odds vary and may not be exactly -110 for a 0.5-1 point spread.

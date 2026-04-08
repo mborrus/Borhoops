@@ -139,7 +139,7 @@ To find real alpha, we'd need features that contain **information the market doe
 | XGBoost | 0.2032 |
 | Logistic | 0.2046 |
 | Neural Net | 0.2128 |
-| CatBoost | pending |
+| CatBoost | 0.2022 |
 
 LightGBM beats XGBoost by 0.004 on the same features. Previous autoresearch found XGBoost winning, but that was on M+W combined — women's results favored XGBoost's configuration. For men's-only betting applications, LightGBM is the better base model.
 

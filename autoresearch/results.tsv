@@ -16,3 +16,4 @@ b3799bb	0.178491	7527.5	discard	Dart boosting — very slow, much worse
 cda2589	0.164997	1771.0	discard	11 feat + game_count_avg
 (side)	0.165462	1800.0	discard	11 feat + depth=3
 75726e8	0.165027	1837.6	discard	11 feat + sigmoid calibration
+(side)	0.164931	1800.0	discard	11 feat no scaler — identical, XGB doesn't need scaling

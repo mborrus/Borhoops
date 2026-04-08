@@ -1,0 +1,36 @@
+/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/arviz/__init__.py:50: FutureWarning: 
+ArviZ is undergoing a major refactor to improve flexibility and extensibility while maintaining a user-friendly interface.
+Some upcoming changes may be backward incompatible.
+For details and migration guidance, visit: https://python.arviz.org/en/latest/user_guide/migration_guide.html
+  warn(
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/scratch/31276185/src/train/train_bart.py", line 258, in <module>
+    main()
+  File "/scratch/31276185/src/train/train_bart.py", line 244, in main
+    results = run_bart_loyo(data, args.gender, args.data_dir, args.experiment, years)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/31276185/src/train/train_bart.py", line 200, in run_bart_loyo
+    model.fit(X_train, y_train)
+  File "/scratch/31276185/src/train/train_bart.py", line 116, in fit
+    import pymc as pm
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pymc/__init__.py", line 50, in <module>
+    from pymc import _version, gp, math, ode, sampling
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pymc/gp/__init__.py", line 17, in <module>
+    from pymc.gp import cov, mean, util
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pymc/gp/cov.py", line 52, in <module>
+    from pymc.pytensorf import constant_fold
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pymc/pytensorf.py", line 53, in <module>
+    from pymc.util import makeiter
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pymc/util.py", line 23, in <module>
+    import arviz
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/arviz/__init__.py", line 61, in <module>
+    _warn_once_per_day()
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/arviz/__init__.py", line 58, in _warn_once_per_day
+    _atomic_write_text(stamp_file, today.isoformat())
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/arviz/__init__.py", line 36, in _atomic_write_text
+    tmp.replace(path)
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/pathlib.py", line 1188, in replace
+    os.replace(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mborrus/.cache/arviz/daily_warning.tmp' -> '/home/mborrus/.cache/arviz/daily_warning'

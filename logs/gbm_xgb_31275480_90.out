@@ -1,0 +1,4 @@
+Loading data...
+Grid index 90/1535: {'n_estimators': 200, 'max_depth': 2, 'learning_rate': 0.1, 'reg_lambda': 5.0, 'subsample': 0.7, 'colsample_bytree': 0.8, 'min_child_weight': 1}
+  Mean Brier: 0.2004
+Saved → /home/mborrus/Borhoops/results/gbm/xgboost_grid_90.json

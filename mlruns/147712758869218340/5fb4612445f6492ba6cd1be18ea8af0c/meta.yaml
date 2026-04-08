@@ -1,0 +1,14 @@
+artifact_uri: file:///home/mborrus/Borhoops/mlruns/147712758869218340/5fb4612445f6492ba6cd1be18ea8af0c/artifacts
+end_time: 1775613689445
+entry_point_name: ''
+experiment_id: '147712758869218340'
+lifecycle_stage: active
+run_id: 5fb4612445f6492ba6cd1be18ea8af0c
+run_name: bayesian_hierarchical
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775613689399
+status: 3
+tags: []
+user_id: mborrus

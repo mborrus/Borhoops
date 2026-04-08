@@ -1,0 +1,4 @@
+Loading data...
+Grid index 74/1535: {'n_estimators': 200, 'max_depth': 2, 'learning_rate': 0.1, 'reg_lambda': 0.1, 'subsample': 0.7, 'colsample_bytree': 0.8, 'min_child_weight': 1}
+  Mean Brier: 0.2002
+Saved → /home/mborrus/Borhoops/results/gbm/xgboost_grid_74.json

@@ -1,0 +1,2 @@
+[2026-04-07T19:30:07.729] error: *** JOB 31273938 ON brussels CANCELLED AT 2026-04-07T19:30:07 DUE to SIGNAL Terminated ***
+rm: cannot remove '/scratch/31273938/data/kaggle': Directory not empty

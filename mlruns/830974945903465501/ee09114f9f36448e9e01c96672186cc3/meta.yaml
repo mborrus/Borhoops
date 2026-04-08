@@ -1,0 +1,14 @@
+artifact_uri: file:///home/mborrus/Borhoops/mlruns/830974945903465501/ee09114f9f36448e9e01c96672186cc3/artifacts
+end_time: 1775644026610
+entry_point_name: ''
+experiment_id: '830974945903465501'
+lifecycle_stage: active
+run_id: ee09114f9f36448e9e01c96672186cc3
+run_name: catboost_grid_50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775644026537
+status: 3
+tags: []
+user_id: mborrus

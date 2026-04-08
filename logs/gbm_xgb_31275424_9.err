@@ -1,0 +1,4 @@
+/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/mlflow/tracking/_tracking_service/utils.py:184: FutureWarning: The filesystem tracking backend (e.g., './mlruns') is deprecated as of February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://mlflow.org/docs/latest/self-hosting/migrate-from-file-store for migration guidance.
+  return FileStore(store_uri, store_uri)
+2026/04/07 21:58:52 INFO mlflow.tracking.fluent: Experiment with name 'gbm_xgboost' does not exist. Creating a new experiment.
+[2026-04-07T22:10:29.570] error: *** JOB 31275452 ON athena CANCELLED AT 2026-04-07T22:10:29 DUE to SIGNAL Terminated ***

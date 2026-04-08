@@ -1,0 +1,4 @@
+Loading data...
+Grid index 79/1535: {'n_estimators': 200, 'max_depth': 2, 'learning_rate': 0.1, 'reg_lambda': 0.1, 'subsample': 0.9, 'colsample_bytree': 0.8, 'min_child_weight': 5}
+  Mean Brier: 0.1997
+Saved → /home/mborrus/Borhoops/results/gbm/lightgbm_grid_79.json

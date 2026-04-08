@@ -1,0 +1,4 @@
+Loading data...
+Grid index 161/1535: {'n_estimators': 200, 'max_depth': 3, 'learning_rate': 0.05, 'reg_lambda': 5.0, 'subsample': 0.7, 'colsample_bytree': 0.6, 'min_child_weight': 5}
+  Mean Brier: 0.1973
+Saved → /home/mborrus/Borhoops/results/gbm/catboost_grid_161.json

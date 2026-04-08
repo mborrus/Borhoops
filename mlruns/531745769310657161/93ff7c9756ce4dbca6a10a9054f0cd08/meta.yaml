@@ -1,0 +1,14 @@
+artifact_uri: file:///home/mborrus/Borhoops/mlruns/531745769310657161/93ff7c9756ce4dbca6a10a9054f0cd08/artifacts
+end_time: 1775644061611
+entry_point_name: ''
+experiment_id: '531745769310657161'
+lifecycle_stage: active
+run_id: 93ff7c9756ce4dbca6a10a9054f0cd08
+run_name: xgboost_grid_5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775644061519
+status: 3
+tags: []
+user_id: mborrus

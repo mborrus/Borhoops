@@ -1,0 +1,2 @@
+[2026-04-07T19:30:07.740] error: *** JOB 31273923 ON cronus CANCELLED AT 2026-04-07T19:30:07 DUE to SIGNAL Terminated ***
+/home/mborrus/miniconda3/envs/borhoops/bin/python: can't open file '/scratch/31273923/src/train/train_gbm.py': [Errno 2] No such file or directory

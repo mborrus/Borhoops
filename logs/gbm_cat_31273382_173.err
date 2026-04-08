@@ -1,0 +1,3 @@
+[2026-04-07T19:30:07.689] error: *** JOB 31273926 ON ares CANCELLED AT 2026-04-07T19:30:07 DUE to SIGNAL Terminated ***
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe

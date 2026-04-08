@@ -1,0 +1,8 @@
+artifact_location: file:///home/mborrus/Borhoops/mlruns/232504499452901784
+creation_time: 1775644067965
+experiment_id: '232504499452901784'
+last_update_time: 1775644067965
+lifecycle_stage: active
+name: gaussian_process
+trace_location: null
+workspace: default

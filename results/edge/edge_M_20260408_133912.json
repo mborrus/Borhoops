@@ -1,0 +1,373 @@
+{
+  "model": "edge_model",
+  "results": {
+    "residual_game_11": {
+      "n_games": 657,
+      "model_brier": 0.2028,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 532,
+          "wins": 246,
+          "win_rate": 0.4624,
+          "total_profit": -68.6,
+          "roi": -0.1172,
+          "kelly_growth": -0.00702,
+          "avg_edge": 0.1194
+        },
+        "t0.05": {
+          "n_bets": 409,
+          "wins": 192,
+          "win_rate": 0.4694,
+          "total_profit": -46.7,
+          "roi": -0.1038,
+          "kelly_growth": -0.006347,
+          "avg_edge": 0.1453
+        },
+        "t0.08": {
+          "n_bets": 308,
+          "wins": 144,
+          "win_rate": 0.4675,
+          "total_profit": -36.4,
+          "roi": -0.1074,
+          "kelly_growth": -0.006529,
+          "avg_edge": 0.1719
+        },
+        "t0.10": {
+          "n_bets": 248,
+          "wins": 114,
+          "win_rate": 0.4597,
+          "total_profit": -33.4,
+          "roi": -0.1224,
+          "kelly_growth": -0.007281,
+          "avg_edge": 0.1916
+        }
+      },
+      "features": [
+        "elo_diff",
+        "elo_pred",
+        "home",
+        "day_num",
+        "sos_diff",
+        "margin_mean_diff",
+        "massey_avg_diff",
+        "barthag_diff",
+        "trank_adjO_diff",
+        "trank_adjD_diff",
+        "conf_elo_diff"
+      ]
+    },
+    "residual_full_25": {
+      "n_games": 657,
+      "model_brier": 0.1981,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 511,
+          "wins": 234,
+          "win_rate": 0.4579,
+          "total_profit": -70.7,
+          "roi": -0.1258,
+          "kelly_growth": -0.007449,
+          "avg_edge": 0.1136
+        },
+        "t0.05": {
+          "n_bets": 389,
+          "wins": 184,
+          "win_rate": 0.473,
+          "total_profit": -41.5,
+          "roi": -0.097,
+          "kelly_growth": -0.006005,
+          "avg_edge": 0.1387
+        },
+        "t0.08": {
+          "n_bets": 290,
+          "wins": 132,
+          "win_rate": 0.4552,
+          "total_profit": -41.8,
+          "roi": -0.131,
+          "kelly_growth": -0.007713,
+          "avg_edge": 0.1644
+        },
+        "t0.10": {
+          "n_bets": 236,
+          "wins": 105,
+          "win_rate": 0.4449,
+          "total_profit": -39.1,
+          "roi": -0.1506,
+          "kelly_growth": -0.008695,
+          "avg_edge": 0.1817
+        }
+      },
+      "features": [
+        "elo_diff",
+        "elo_pred",
+        "home",
+        "day_num",
+        "game_count_avg",
+        "sos_diff",
+        "win_streak_diff",
+        "rest_days_diff",
+        "margin_mean_diff",
+        "margin_std_diff",
+        "off_eff_r10_diff",
+        "def_eff_r10_diff",
+        "efg_pct_r10_diff",
+        "opp_efg_pct_r10_diff",
+        "to_rate_r10_diff",
+        "or_pct_r10_diff",
+        "pace_r10_diff",
+        "massey_avg_diff",
+        "coach_tenure_diff",
+        "coach_change_diff",
+        "close_win_pct_diff",
+        "conf_elo_diff",
+        "barthag_diff",
+        "trank_adjO_diff",
+        "trank_adjD_diff"
+      ]
+    },
+    "residual_behavioral_10": {
+      "n_games": 657,
+      "model_brier": 0.2632,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 625,
+          "wins": 200,
+          "win_rate": 0.32,
+          "total_profit": -267.5,
+          "roi": -0.3891,
+          "kelly_growth": -0.020655,
+          "avg_edge": 0.2257
+        },
+        "t0.05": {
+          "n_bets": 571,
+          "wins": 175,
+          "win_rate": 0.3065,
+          "total_profit": -260.6,
+          "roi": -0.4149,
+          "kelly_growth": -0.021949,
+          "avg_edge": 0.2437
+        },
+        "t0.08": {
+          "n_bets": 518,
+          "wins": 152,
+          "win_rate": 0.2934,
+          "total_profit": -250.6,
+          "roi": -0.4398,
+          "kelly_growth": -0.023198,
+          "avg_edge": 0.2619
+        },
+        "t0.10": {
+          "n_bets": 487,
+          "wins": 139,
+          "win_rate": 0.2854,
+          "total_profit": -243.8,
+          "roi": -0.4551,
+          "kelly_growth": -0.023966,
+          "avg_edge": 0.2729
+        }
+      },
+      "features": [
+        "win_streak_diff",
+        "rest_days_diff",
+        "margin_std_diff",
+        "coach_change_diff",
+        "close_win_pct_diff",
+        "off_eff_r10_diff",
+        "def_eff_r10_diff",
+        "pace_r10_diff",
+        "home",
+        "day_num"
+      ]
+    },
+    "detection_game_11": {
+      "n_games": 657,
+      "model_brier": 0.197,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 510,
+          "wins": 227,
+          "win_rate": 0.4451,
+          "total_profit": -84.3,
+          "roi": -0.1503,
+          "kelly_growth": -0.008677,
+          "avg_edge": 0.1015
+        },
+        "t0.05": {
+          "n_bets": 375,
+          "wins": 167,
+          "win_rate": 0.4453,
+          "total_profit": -61.8,
+          "roi": -0.1498,
+          "kelly_growth": -0.008655,
+          "avg_edge": 0.1257
+        },
+        "t0.08": {
+          "n_bets": 260,
+          "wins": 109,
+          "win_rate": 0.4192,
+          "total_profit": -57.1,
+          "roi": -0.1997,
+          "kelly_growth": -0.011154,
+          "avg_edge": 0.153
+        },
+        "t0.10": {
+          "n_bets": 207,
+          "wins": 85,
+          "win_rate": 0.4106,
+          "total_profit": -49.2,
+          "roi": -0.2161,
+          "kelly_growth": -0.011978,
+          "avg_edge": 0.1691
+        }
+      },
+      "features": [
+        "elo_diff",
+        "elo_pred",
+        "home",
+        "day_num",
+        "sos_diff",
+        "margin_mean_diff",
+        "massey_avg_diff",
+        "barthag_diff",
+        "trank_adjO_diff",
+        "trank_adjD_diff",
+        "conf_elo_diff",
+        "spread",
+        "implied_prob"
+      ]
+    },
+    "detection_full_25": {
+      "n_games": 657,
+      "model_brier": 0.1942,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 520,
+          "wins": 230,
+          "win_rate": 0.4423,
+          "total_profit": -89.0,
+          "roi": -0.1556,
+          "kelly_growth": -0.008945,
+          "avg_edge": 0.0895
+        },
+        "t0.05": {
+          "n_bets": 345,
+          "wins": 156,
+          "win_rate": 0.4522,
+          "total_profit": -51.9,
+          "roi": -0.1368,
+          "kelly_growth": -0.008,
+          "avg_edge": 0.1178
+        },
+        "t0.08": {
+          "n_bets": 243,
+          "wins": 98,
+          "win_rate": 0.4033,
+          "total_profit": -61.5,
+          "roi": -0.2301,
+          "kelly_growth": -0.01268,
+          "avg_edge": 0.1407
+        },
+        "t0.10": {
+          "n_bets": 185,
+          "wins": 71,
+          "win_rate": 0.3838,
+          "total_profit": -54.4,
+          "roi": -0.2673,
+          "kelly_growth": -0.014548,
+          "avg_edge": 0.1565
+        }
+      },
+      "features": [
+        "elo_diff",
+        "elo_pred",
+        "home",
+        "day_num",
+        "game_count_avg",
+        "sos_diff",
+        "win_streak_diff",
+        "rest_days_diff",
+        "margin_mean_diff",
+        "margin_std_diff",
+        "off_eff_r10_diff",
+        "def_eff_r10_diff",
+        "efg_pct_r10_diff",
+        "opp_efg_pct_r10_diff",
+        "to_rate_r10_diff",
+        "or_pct_r10_diff",
+        "pace_r10_diff",
+        "massey_avg_diff",
+        "coach_tenure_diff",
+        "coach_change_diff",
+        "close_win_pct_diff",
+        "conf_elo_diff",
+        "barthag_diff",
+        "trank_adjO_diff",
+        "trank_adjD_diff",
+        "spread",
+        "implied_prob"
+      ]
+    },
+    "detection_behavioral_10": {
+      "n_games": 657,
+      "model_brier": 0.2264,
+      "vegas_brier": 0.1857,
+      "betting": {
+        "t0.02": {
+          "n_bets": 606,
+          "wins": 196,
+          "win_rate": 0.3234,
+          "total_profit": -255.0,
+          "roi": -0.3825,
+          "kelly_growth": -0.020326,
+          "avg_edge": 0.1486
+        },
+        "t0.05": {
+          "n_bets": 520,
+          "wins": 161,
+          "win_rate": 0.3096,
+          "total_profit": -233.9,
+          "roi": -0.4089,
+          "kelly_growth": -0.021649,
+          "avg_edge": 0.1673
+        },
+        "t0.08": {
+          "n_bets": 413,
+          "wins": 110,
+          "win_rate": 0.2663,
+          "total_profit": -223.3,
+          "roi": -0.4915,
+          "kelly_growth": -0.025792,
+          "avg_edge": 0.1939
+        },
+        "t0.10": {
+          "n_bets": 367,
+          "wins": 92,
+          "win_rate": 0.2507,
+          "total_profit": -210.5,
+          "roi": -0.5214,
+          "kelly_growth": -0.027292,
+          "avg_edge": 0.2069
+        }
+      },
+      "features": [
+        "win_streak_diff",
+        "rest_days_diff",
+        "margin_std_diff",
+        "coach_change_diff",
+        "close_win_pct_diff",
+        "off_eff_r10_diff",
+        "def_eff_r10_diff",
+        "pace_r10_diff",
+        "home",
+        "day_num",
+        "spread",
+        "implied_prob"
+      ]
+    }
+  }
+}

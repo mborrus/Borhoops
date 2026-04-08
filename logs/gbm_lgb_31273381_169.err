@@ -1,0 +1,4 @@
+[2026-04-07T19:30:07.750] error: *** JOB 31273922 ON chicago CANCELLED AT 2026-04-07T19:30:07 DUE to SIGNAL Terminated ***
+Traceback (most recent call last):
+  File "/scratch/31273922/src/train/train_gbm.py", line 26, in <module>
+ModuleNotFoundError: No module named 'train'

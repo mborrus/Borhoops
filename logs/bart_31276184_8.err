@@ -1,0 +1,17 @@
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [beta, alpha]
+                                                                                
+                             Step      Grad                                     
+  Progre…   Draw   Diverg…   size      evals      Speed     Elapsed   Remaini…  
+ ────────────────────────────────────────────────────────────────────────────── 
+  ━━━━━━━   2000   0         0.041     127        1.83      1:01:08   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.069     127        1.92      1:03:55   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.046     127        1.97      1:05:49   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.054     127        1.97      1:05:42   0:00:00   
+                                                  s/draw                        
+                                                                                
+Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 3949 seconds.

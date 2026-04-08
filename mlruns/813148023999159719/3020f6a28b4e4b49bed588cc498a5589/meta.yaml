@@ -1,0 +1,14 @@
+artifact_uri: file:///home/mborrus/Borhoops/mlruns/813148023999159719/3020f6a28b4e4b49bed588cc498a5589/artifacts
+end_time: 1775597752491
+entry_point_name: ''
+experiment_id: '813148023999159719'
+lifecycle_stage: active
+run_id: 3020f6a28b4e4b49bed588cc498a5589
+run_name: lightgbm_grid_46
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775597752425
+status: 3
+tags: []
+user_id: mborrus

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/scratch/31275287/src/train/train_gbm.py", line 26, in <module>
+    from train.evaluate import prepare_data, prepare_fold, brier_score, TOURNEY_YEARS, save_results
+  File "/scratch/31275287/src/train/evaluate.py", line 21, in <module>
+    from predict.elo import add_game_counts
+  File "/scratch/31275287/src/predict/elo.py", line 5, in <module>
+    from geopy.distance import distance as geo_distance
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/geopy/__init__.py", line 12, in <module>
+    from geopy.geocoders import *  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/geopy/geocoders/__init__.py", line 224, in <module>
+    from geopy.geocoders.arcgis import ArcGIS
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/geopy/geocoders/arcgis.py", line 11, in <module>
+    from geopy.geocoders.base import DEFAULT_SENTINEL, Geocoder, _synchronized
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/geopy/geocoders/base.py", line 7, in <module>
+    from geopy.adapters import (
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/geopy/adapters.py", line 21, in <module>
+    import ssl
+  File "/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/ssl.py", line 100, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+    ^^^^^^^^^^^
+ImportError: libcrypto.so.3: cannot stat shared object: Stale file handle

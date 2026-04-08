@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scratch/31273769/src/train/train_gbm.py", line 26, in <module>
+    from train.evaluate import prepare_data, prepare_fold, brier_score, TOURNEY_YEARS, save_results
+  File "/scratch/31273769/src/train/train.py", line 19, in <module>
+    from train.features import build_features, FEATURE_COLS
+ModuleNotFoundError: No module named 'train.features'; 'train' is not a package

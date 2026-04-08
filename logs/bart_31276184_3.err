@@ -1,0 +1,22 @@
+/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/arviz/__init__.py:50: FutureWarning: 
+ArviZ is undergoing a major refactor to improve flexibility and extensibility while maintaining a user-friendly interface.
+Some upcoming changes may be backward incompatible.
+For details and migration guidance, visit: https://python.arviz.org/en/latest/user_guide/migration_guide.html
+  warn(
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [beta, alpha]
+                                                                                
+                             Step      Grad                                     
+  Progre…   Draw   Diverg…   size      evals      Speed     Elapsed   Remaini…  
+ ────────────────────────────────────────────────────────────────────────────── 
+  ━━━━━━━   2000   0         0.052     63         1.69      0:56:22   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.054     127        1.93      1:04:13   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.054     63         1.93      1:04:19   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.051     127        1.90      1:03:14   0:00:00   
+                                                  s/draw                        
+                                                                                
+Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 3859 seconds.

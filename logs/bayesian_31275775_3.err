@@ -1,0 +1,76 @@
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (32 chains in 32 jobs)
+NUTS: [beta, alpha]
+                                                                                
+                             Step      Grad                                     
+  Progre…   Draw   Diverg…   size      evals      Speed     Elapsed   Remaini…  
+ ────────────────────────────────────────────────────────────────────────────── 
+  ━━━━━━━   2000   0         0.059     127        1.34      0:44:46   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.049     127        1.33      0:44:16   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.045     63         1.30      0:43:09   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.051     63         1.16      0:38:34   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.062     63         1.24      0:41:09   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.051     127        1.48      0:49:24   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.047     63         1.29      0:42:52   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.052     127        1.32      0:44:10   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.050     63         1.25      0:41:29   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.048     127        1.36      0:45:13   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.068     63         1.23      0:41:05   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.042     63         1.29      0:43:05   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.062     63         1.21      0:40:10   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.057     63         1.28      0:42:36   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.053     63         1.30      0:43:23   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.056     63         1.27      0:42:10   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.047     63         1.40      0:46:38   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.054     127        1.32      0:43:58   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.045     63         1.19      0:39:35   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   1000      0.000     1          47.58     0:00:42   0:00:00   
+                                                  draws/s                       
+  ━━━━━━━   2000   0         0.053     127        1.39      0:46:26   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.050     63         1.30      0:43:25   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.057     63         1.29      0:43:02   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.057     191        1.19      0:39:47   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.043     127        1.26      0:41:57   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.055     127        1.31      0:43:30   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.049     127        1.22      0:40:32   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.069     63         1.17      0:38:59   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.054     127        1.28      0:42:34   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   0         0.039     127        1.42      0:47:11   0:00:00   
+                                                  s/draw                        
+  ━━━━━━━   2000   1000      0.000     1          49.68     0:00:40   0:00:00   
+                                                  draws/s                       
+  ━━━━━━━   2000   0         0.055     63         1.42      0:47:20   0:00:00   
+                                                  s/draw                        
+                                                                                
+Sampling 32 chains for 1_000 tune and 1_000 draw iterations (32_000 + 32_000 draws total) took 2965 seconds.
+There were 2000 divergences after tuning. Increase `target_accept` or reparameterize.
+The rhat statistic is larger than 1.01 for some parameters. This indicates problems during sampling. See https://arxiv.org/abs/1903.08008 for details
+The effective sample size per chain is smaller than 100 for some parameters.  A higher number is needed for reliable rhat and ess computation. See https://arxiv.org/abs/1903.08008 for details

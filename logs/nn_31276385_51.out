@@ -1,0 +1,14 @@
+Grid index 51/53: {'hidden1': 256, 'hidden2': 128, 'hidden3': 64, 'dropout': 0.5, 'lr': 0.001, 'weight_decay': 0.001}
+  2015: Brier=0.2224  (206.6s)
+  2016: Brier=0.2315  (191.6s)
+  2017: Brier=0.2215  (221.8s)
+  2018: Brier=0.1743  (277.5s)
+  2019: Brier=0.1886  (158.5s)
+  2021: Brier=0.2258  (187.9s)
+  2022: Brier=0.2584  (149.3s)
+  2023: Brier=0.2313  (234.4s)
+  2024: Brier=0.2123  (162.3s)
+  2025: Brier=0.1668  (195.8s)
+
+  LOYO CV: Brier = 0.2133 ± 0.0270
+Saved → /home/mborrus/Borhoops/results/nn/nn_grid_51_20260408_123758.json

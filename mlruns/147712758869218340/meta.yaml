@@ -1,0 +1,8 @@
+artifact_location: file:///home/mborrus/Borhoops/mlruns/147712758869218340
+creation_time: 1775613688799
+experiment_id: '147712758869218340'
+last_update_time: 1775613688799
+lifecycle_stage: active
+name: bayesian
+trace_location: null
+workspace: default

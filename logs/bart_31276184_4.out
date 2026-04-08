@@ -1,0 +1,7 @@
+Worker 4/10: folds [2019]
+
+--- Fold: 2019 ---
+  Brier=0.2391  (3471.9s)
+
+LOYO CV: Brier = 0.2391 ± 0.0000
+Saved → /home/mborrus/Borhoops/results/bart/baseline_w4_20260408_013724.json

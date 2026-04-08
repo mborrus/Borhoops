@@ -1,0 +1,8 @@
+artifact_location: file:///home/mborrus/Borhoops/mlruns/813148023999159719
+creation_time: 1775594532283
+experiment_id: '813148023999159719'
+last_update_time: 1775594532283
+lifecycle_stage: active
+name: gbm_lightgbm
+trace_location: null
+workspace: default

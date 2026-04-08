@@ -1,0 +1,20 @@
+{
+  "model": "bayesian_hierarchical",
+  "results": {
+    "2018": {
+      "brier": 0.2141,
+      "log_loss": 0.6198,
+      "n_games": 67,
+      "elapsed_s": 3051.0
+    },
+    "overall": {
+      "mean_brier": 0.2141,
+      "std_brier": 0.0,
+      "n_folds": 1
+    }
+  },
+  "chains": 32,
+  "samples": 1000,
+  "fold_index": 3,
+  "n_workers": 10
+}

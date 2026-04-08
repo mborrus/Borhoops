@@ -1,0 +1,20 @@
+{
+  "model": "bayesian_hierarchical",
+  "results": {
+    "2024": {
+      "brier": 0.1883,
+      "log_loss": 0.5594,
+      "n_games": 67,
+      "elapsed_s": 2982.2
+    },
+    "overall": {
+      "mean_brier": 0.1883,
+      "std_brier": 0.0,
+      "n_folds": 1
+    }
+  },
+  "chains": 32,
+  "samples": 1000,
+  "fold_index": 8,
+  "n_workers": 10
+}

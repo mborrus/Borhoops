@@ -1,0 +1,8 @@
+artifact_location: file:///home/mborrus/Borhoops/mlruns/830974945903465501
+creation_time: 1775594528086
+experiment_id: '830974945903465501'
+last_update_time: 1775594528086
+lifecycle_stage: active
+name: gbm_catboost
+trace_location: null
+workspace: default

@@ -1,0 +1,9 @@
+Initializing NUTS using jitter+adapt_diag...
+/home/mborrus/miniconda3/envs/borhoops/lib/python3.11/site-packages/pytensor/link/c/cmodule.py:2986: UserWarning: PyTensor could not link to a BLAS installation. Operations that might benefit from BLAS will be severely degraded.
+This usually happens when PyTensor is installed via pip. We recommend it be installed via conda/mamba/pixi instead.
+Alternatively, you can use an experimental backend such as Numba or JAX that perform their own BLAS optimizations, by setting `pytensor.config.mode == 'NUMBA'` or passing `mode='NUMBA'` when compiling a PyTensor function.
+For more options and details see https://pytensor.readthedocs.io/en/latest/troubleshooting.html#how-do-i-configure-test-my-blas-library
+  warnings.warn(
+Multiprocess sampling (16 chains in 16 jobs)
+NUTS: [beta, alpha]
+[2026-04-07T20:13:27.037] error: *** JOB 31274579 ON dubai CANCELLED AT 2026-04-07T20:13:27 DUE to SIGNAL Terminated ***

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/scratch/31276449/src/train/alpha_analysis.py", line 301, in <module>
+    main()
+  File "/scratch/31276449/src/train/alpha_analysis.py", line 290, in main
+    results = run_alpha_analysis(data, args.gender, args.data_dir, args.thresholds)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/31276449/src/train/alpha_analysis.py", line 181, in run_alpha_analysis
+    tourney_odds = _load_tourney_odds(data_dir, gender)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/31276449/src/train/alpha_analysis.py", line 59, in _load_tourney_odds
+    tourney_path = Path(data_dir) / "kaggle" / ("M" if gender == "M" else "W") + "NCAATourneyCompactResults.csv"
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for +: 'PosixPath' and 'str'

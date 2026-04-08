@@ -1,0 +1,19 @@
+{
+  "model": "bart_baseline",
+  "results": {
+    "2021": {
+      "brier": 0.2591,
+      "log_loss": 0.8154,
+      "n_games": 66,
+      "elapsed_s": 3800.5
+    },
+    "overall": {
+      "mean_brier": 0.2591,
+      "std_brier": 0.0,
+      "n_folds": 1
+    }
+  },
+  "experiment": "baseline",
+  "fold_index": 5,
+  "n_workers": 10
+}

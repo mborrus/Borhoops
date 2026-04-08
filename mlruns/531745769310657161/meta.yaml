@@ -1,0 +1,8 @@
+artifact_location: file:///home/mborrus/Borhoops/mlruns/531745769310657161
+creation_time: 1775594535885
+experiment_id: '531745769310657161'
+last_update_time: 1775594535885
+lifecycle_stage: active
+name: gbm_xgboost
+trace_location: null
+workspace: default

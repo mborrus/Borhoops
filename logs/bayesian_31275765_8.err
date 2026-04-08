@@ -1,0 +1,4 @@
+usage: train_bayesian.py [-h] [--gender {M,W}] [--data-dir DATA_DIR]
+                         [--output-dir OUTPUT_DIR] [--chains CHAINS]
+                         [--samples SAMPLES]
+train_bayesian.py: error: unrecognized arguments: --fold-index 8 --n-workers 10

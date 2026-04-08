@@ -1,0 +1,4 @@
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (32 chains in 4 jobs)
+NUTS: [beta, alpha]
+[2026-04-07T23:25:29.782] error: *** JOB 31275477 ON dubai CANCELLED AT 2026-04-07T23:25:29 DUE to SIGNAL Terminated ***

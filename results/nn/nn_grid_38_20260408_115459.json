@@ -1,0 +1,79 @@
+{
+  "model": "nn_grid_38",
+  "results": {
+    "2015": {
+      "brier": 0.2258,
+      "log_loss": 0.7248,
+      "n_games": 67,
+      "elapsed_s": 156.3
+    },
+    "2016": {
+      "brier": 0.2322,
+      "log_loss": 0.7648,
+      "n_games": 67,
+      "elapsed_s": 148.1
+    },
+    "2017": {
+      "brier": 0.2654,
+      "log_loss": 0.7616,
+      "n_games": 67,
+      "elapsed_s": 150.9
+    },
+    "2018": {
+      "brier": 0.1748,
+      "log_loss": 0.5881,
+      "n_games": 67,
+      "elapsed_s": 148.9
+    },
+    "2019": {
+      "brier": 0.1965,
+      "log_loss": 0.6012,
+      "n_games": 67,
+      "elapsed_s": 168.0
+    },
+    "2021": {
+      "brier": 0.2159,
+      "log_loss": 0.6618,
+      "n_games": 66,
+      "elapsed_s": 146.1
+    },
+    "2022": {
+      "brier": 0.2891,
+      "log_loss": 0.9138,
+      "n_games": 67,
+      "elapsed_s": 158.5
+    },
+    "2023": {
+      "brier": 0.2429,
+      "log_loss": 0.7958,
+      "n_games": 67,
+      "elapsed_s": 140.7
+    },
+    "2024": {
+      "brier": 0.2376,
+      "log_loss": 0.7337,
+      "n_games": 67,
+      "elapsed_s": 152.6
+    },
+    "2025": {
+      "brier": 0.192,
+      "log_loss": 0.5656,
+      "n_games": 67,
+      "elapsed_s": 152.9
+    },
+    "overall": {
+      "mean_brier": 0.2272,
+      "std_brier": 0.0328,
+      "n_folds": 10
+    }
+  },
+  "params": {
+    "hidden1": 256,
+    "hidden2": 128,
+    "hidden3": 64,
+    "dropout": 0.2,
+    "lr": 0.001,
+    "weight_decay": 0.0001
+  },
+  "grid_index": 38
+}

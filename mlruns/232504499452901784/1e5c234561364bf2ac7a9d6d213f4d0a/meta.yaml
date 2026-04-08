@@ -1,0 +1,14 @@
+artifact_uri: file:///home/mborrus/Borhoops/mlruns/232504499452901784/1e5c234561364bf2ac7a9d6d213f4d0a/artifacts
+end_time: 1775644068038
+entry_point_name: ''
+experiment_id: '232504499452901784'
+lifecycle_stage: active
+run_id: 1e5c234561364bf2ac7a9d6d213f4d0a
+run_name: gaussian_process
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775644067971
+status: 3
+tags: []
+user_id: mborrus

@@ -153,9 +153,41 @@ The edge exists ONLY in regular season. On tournament games, every approach lose
 
 Tournament lines are the sharpest in the market — highest volume, most attention from sharp bettors. The sweet spot edge exists in **regular season only**, likely because pick'em games between non-marquee teams receive less market scrutiny.
 
+## Verification with Real Moneyline Odds
+
+Tested using actual HomeML/AwayML from ESPN odds data (not assumed -110):
+
+| Year | Bets | Win Rate | Profit | ROI |
+|---|---|---|---|---|
+| 2016 | 46 | 80.4% | +25.5u | +55.4% |
+| 2017 | 51 | 78.4% | +27.4u | +53.7% |
+| 2018 | 62 | 83.9% | +37.8u | +60.9% |
+| 2019 | 70 | 75.7% | +31.3u | +44.8% |
+| 2020 | 76 | 73.7% | +31.8u | +41.8% |
+| 2021 | 34 | 79.4% | +18.6u | +54.6% |
+| 2022 | 28 | 64.3% | +6.0u | +21.3% |
+| 2023 | 60 | 71.7% | +24.9u | +41.5% |
+| 2024 | 42 | 71.4% | +16.9u | +40.3% |
+| 2025 | 49 | 67.3% | +14.4u | +29.4% |
+| **Total** | **518** | **75.1%** | **+234.5u** | **+45.3%** |
+
+- Avg moneyline odds: -38 (essentially even money, slight favorite)
+- Avg payout on win: 0.93x
+- Avg implied probability from ML: 47.9%
+
+**Results are stronger with real odds (+45% ROI) than with assumed -110 (+42% ROI).**
+
+## Clean Out-of-Sample: 2025
+
+Model trained on 2013-2024 ONLY. Never saw any 2025 data during training.
+
+**2025: 49 bets, 67.3% win rate, +14.4 units, +29.4% ROI.**
+
+Lower than historical average (75%, +45%) but still well above the ~48% breakeven for these odds. The edge degrades slightly out-of-sample but remains profitable.
+
 ## Caveats
 
-1. **Moneyline odds assumption**: We assumed -110 (even money) for all sweet spot bets. Real moneyline odds vary and may not be exactly -110 for a 0.5-1 point spread.
+1. ~~Moneyline odds assumption~~: **VERIFIED** with real ESPN moneyline odds. Results stronger than assumed.
 2. **Historical only**: Tested on 2016-2025 regular season. No live betting tested.
 3. **Vig and execution**: Real betting involves timing, line movement, and available odds that we don't model.
 4. **Sample size per year**: 40-100 games per year. Individual year results have variance.

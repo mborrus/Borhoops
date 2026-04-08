@@ -189,8 +189,8 @@ def run_nn_loyo(data, gender="M", data_dir="data", params=None, years=None):
     return results
 
 
-def run_sweep(data, gender="M", data_dir="data"):
-    """Grid sweep over key NN hyperparameters."""
+def _build_sweep_configs():
+    """54 configs for the NN sweep."""
     configs = []
     for hidden1 in [64, 128, 256]:
         for dropout in [0.2, 0.3, 0.5]:
@@ -201,21 +201,7 @@ def run_sweep(data, gender="M", data_dir="data"):
                         "hidden3": hidden1 // 4, "dropout": dropout,
                         "lr": lr, "weight_decay": wd,
                     })
-
-    print(f"Sweep: {len(configs)} configurations")
-    best_brier = 1.0
-    best_config = None
-
-    for i, params in enumerate(configs):
-        print(f"\n[{i+1}/{len(configs)}] {params}")
-        results = run_nn_loyo(data, gender, data_dir, params)
-        mb = results["overall"]["mean_brier"]
-        if mb < best_brier:
-            best_brier = mb
-            best_config = params
-            print(f"  *** NEW BEST: {mb:.4f} ***")
-
-    return {"best_params": best_config, "best_brier": best_brier}
+    return configs
 
 
 def main():
@@ -223,9 +209,8 @@ def main():
     parser.add_argument("--gender", default="M", choices=["M", "W"])
     parser.add_argument("--data-dir", default="data")
     parser.add_argument("--output-dir", default="results/nn")
-    parser.add_argument("--sweep", action="store_true", help="Run hyperparameter sweep")
     parser.add_argument("--grid-index", type=int, default=None,
-                        help="Single config index for HPC array jobs")
+                        help="Config index for HPC array jobs (0-53)")
     args = parser.parse_args()
 
     data = prepare_data(args.data_dir)
@@ -233,15 +218,24 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-    if args.sweep:
-        results = run_sweep(data, args.gender, args.data_dir)
-        path = output_dir / f"nn_sweep_{timestamp}.json"
+    configs = _build_sweep_configs()
+
+    if args.grid_index is not None:
+        if args.grid_index >= len(configs):
+            print(f"Grid index {args.grid_index} out of range (max {len(configs)-1})")
+            return
+        params = configs[args.grid_index]
+        print(f"Grid index {args.grid_index}/{len(configs)-1}: {params}")
+        results = run_nn_loyo(data, args.gender, args.data_dir, params)
+        path = output_dir / f"nn_grid_{args.grid_index}_{timestamp}.json"
+        save_results(results, path, model_name=f"nn_grid_{args.grid_index}",
+                     extra={"params": params, "grid_index": args.grid_index})
     else:
         print("Running default NN with LOYO CV...")
         results = run_nn_loyo(data, args.gender, args.data_dir)
         path = output_dir / f"nn_default_{timestamp}.json"
+        save_results(results, path, model_name="neural_net")
 
-    save_results(results, path, model_name="neural_net")
     print(f"Saved → {path}")
 
 

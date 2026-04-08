@@ -227,8 +227,7 @@ class SiameseLSTM:
 
 
 def run_lstm_loyo(data, gender="M", data_dir="data", params=None, years=None):
-    """LOYO CV for the LSTM model. Different flow than other models since
-    LSTM needs per-team game sequences, not flat feature vectors."""
+    """LOYO CV for the LSTM model. Precomputes features once, then splits by fold."""
     if years is None:
         years = TOURNEY_YEARS
     if params is None:
@@ -239,41 +238,41 @@ def run_lstm_loyo(data, gender="M", data_dir="data", params=None, years=None):
     hfa_dict = _build_hfa_dict(data["hfa"], gender)
     location_dict = _build_location_dict(data["home_lookup"], gender)
 
+    # Precompute features ONCE for all seasons
+    print("  Precomputing features for all seasons...")
+    all_seasons = sorted(results_df["Season"].unique())
+    features_df, elo_ratings, game_counts, team_states, conf_elo_means = build_features(
+        results=results_df,
+        conferences=data[gd["conf_key"]],
+        hfa_dict=hfa_dict,
+        location_dict=location_dict,
+        seasons=set(all_seasons),
+        detailed_results=gd["detailed"],
+        massey_per_system=gd["massey_per"],
+        massey_avg=gd["massey_avg"],
+        coach_tenure=gd["coach_tenure"],
+        coach_changed=gd["coach_changed"],
+        barttorvik=gd["barttorvik"],
+        odds_lookup=gd["odds_lookup"],
+        odds_team_avg=gd["odds_team_avg"],
+        poll_lookup=gd["poll_lookup"],
+        weeks_ranked=gd["weeks_ranked"],
+        roster_lookup=gd["roster_lookup"],
+        seeds=gd["seeds"],
+    )
+
+    # Precompute all per-season team sequences
+    print("  Building team sequences...")
+    sequences_by_season = {}
+    for s in all_seasons:
+        sequences_by_season[s] = _build_team_sequences(features_df, s)
+
     tourney = _load_tourney_results(data_dir, gender)
     results = {}
     all_brier = []
 
     for year in years:
         t0 = time.time()
-
-        all_seasons = sorted(results_df["Season"].unique())
-        train_seasons = set(s for s in all_seasons if s != year)
-
-        # Build features for all seasons (for sequences) and training
-        features_df, elo_ratings, game_counts, team_states, conf_elo_means = build_features(
-            results=results_df,
-            conferences=data[gd["conf_key"]],
-            hfa_dict=hfa_dict,
-            location_dict=location_dict,
-            seasons=set(all_seasons),
-            detailed_results=gd["detailed"],
-            massey_per_system=gd["massey_per"],
-            massey_avg=gd["massey_avg"],
-            coach_tenure=gd["coach_tenure"],
-            coach_changed=gd["coach_changed"],
-            barttorvik=gd["barttorvik"],
-            odds_lookup=gd["odds_lookup"],
-            odds_team_avg=gd["odds_team_avg"],
-            poll_lookup=gd["poll_lookup"],
-            weeks_ranked=gd["weeks_ranked"],
-            roster_lookup=gd["roster_lookup"],
-            seeds=gd["seeds"],
-        )
-
-        # Build per-season team sequences
-        sequences_by_season = {}
-        for s in all_seasons:
-            sequences_by_season[s] = _build_team_sequences(features_df, s)
 
         # Training matchups (regular season, excluding target year)
         train_df = features_df[features_df["season"] != year]

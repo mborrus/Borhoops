@@ -131,6 +131,18 @@ To find real alpha, we'd need features that contain **information the market doe
 | **Edge model** | Predict where Vegas is wrong | Directional accuracy on disagreement games, ROI |
 | **Confidence model** | Estimate certainty of our edge | P(our edge is correct) when we disagree |
 
+## Fair Model Comparison (11 features, men's only LOYO)
+
+| Model | Brier |
+|---|---|
+| **LightGBM** | **0.1995** |
+| XGBoost | 0.2032 |
+| Logistic | 0.2046 |
+| Neural Net | 0.2128 |
+| CatBoost | pending |
+
+LightGBM beats XGBoost by 0.004 on the same features. Previous autoresearch found XGBoost winning, but that was on M+W combined — women's results favored XGBoost's configuration. For men's-only betting applications, LightGBM is the better base model.
+
 ## Files
 - `src/train/train_edge.py` — Edge model implementation (residual + detection approaches)
 - `src/train/alpha_analysis.py` — Alpha analysis vs Vegas (tournament)

@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name=edge_sw
+#SBATCH --partition=scratch
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=128G
+#SBATCH --output=logs/edge_sw_%A_%a.out
+#SBATCH --error=logs/edge_sw_%A_%a.err
+#SBATCH --array=0-29%6
+
+set -eo pipefail
+
+LOCAL=/scratch/$SLURM_JOB_ID
+mkdir -p $LOCAL
+trap "rm -rf $LOCAL" EXIT
+
+cp -r /home/mborrus/Borhoops/data $LOCAL/data
+cp -r /home/mborrus/Borhoops/src $LOCAL/src
+
+source ~/miniconda3/etc/profile.d/conda.sh
+conda activate borhoops
+
+cd $LOCAL/src
+PYTHONPATH=$LOCAL/src python -u -m train.sweep_edge \
+    --config-index $SLURM_ARRAY_TASK_ID \
+    --output-dir /home/mborrus/Borhoops/results/edge_sweep

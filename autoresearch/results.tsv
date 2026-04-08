@@ -1,2 +1,7 @@
 commit	mean_brier	elapsed_s	status	description
 baseline	0.166206	758.7	keep	XGBoost baseline (n_est=500 depth=2 lr=0.03 lambda=5.0) all 30 features
+b12c9fb	0.169886	1727.7	discard	XGBoost grid-best all 40 features
+963a7b6	0.167226	1737.3	discard	LightGBM 30 features
+9f49fb6	0.166255	1739.9	discard	XGBoost + polls (33 features)
+8b85552	0.173266	1819.1	discard	XGB+LGB ensemble
+1dac2b3	0.172200	1954.8	discard	XGBoost + isotonic calibration — overfits on small folds

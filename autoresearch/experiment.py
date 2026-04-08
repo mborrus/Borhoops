@@ -18,19 +18,25 @@ def get_model():
     return Pipeline([
         ("scaler", StandardScaler()),
         ("clf", XGBClassifier(
-            n_estimators=200,
-            max_depth=3,
-            learning_rate=0.01,
+            n_estimators=500,
+            max_depth=2,
+            learning_rate=0.03,
             reg_lambda=5.0,
-            subsample=0.9,
-            colsample_bytree=0.6,
-            min_child_weight=5,
+            subsample=0.8,
+            colsample_bytree=0.7,
             random_state=42,
             eval_metric="logloss",
         )),
     ])
 
 
-# None = use all 40 features. Or specify a list:
-# FEATURE_SUBSET = ["elo_diff", "elo_pred", "barthag_diff", "massey_avg_diff"]
-FEATURE_SUBSET = None
+# Power ratings only: Elo + Massey + Barttorvik + key game context
+# Drop rolling box score stats, coach, and derived features (potential noise)
+FEATURE_SUBSET = [
+    "elo_diff", "elo_pred", "home", "day_num",
+    "sos_diff", "margin_mean_diff",
+    "massey_pom_diff", "massey_sag_diff", "massey_mor_diff",
+    "massey_dok_diff", "massey_col_diff", "massey_avg_diff",
+    "barthag_diff", "trank_adjO_diff", "trank_adjD_diff",
+    "conf_elo_diff",
+]

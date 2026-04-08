@@ -193,6 +193,42 @@ Lower than historical average (75%, +45%) but still well above the ~48% breakeve
 4. **Sample size per year**: 40-100 games per year. Individual year results have variance.
 5. **Feature leakage check needed**: Should verify that no training data leaks into test predictions (features computed before game, not from game result).
 
+## Kelly Sizing Backtest
+
+Quarter-Kelly (conservative) results, starting with 100 units per season:
+
+| Year | Bets | Flat Profit | Kelly Profit | Ending Bankroll |
+|---|---|---|---|---|
+| 2016 | 46 | +25.5u | +239.9u | 339.9u |
+| 2017 | 51 | +27.4u | +270.6u | 370.6u |
+| 2018 | 62 | +37.8u | +520.4u | 620.4u |
+| 2019 | 70 | +31.3u | +343.9u | 443.9u |
+| 2020 | 76 | +31.8u | +350.1u | 450.1u |
+| 2021 | 34 | +18.6u | +143.5u | 243.5u |
+| 2022 | 28 | +6.0u | +30.7u | 130.7u |
+| 2023 | 60 | +24.9u | +223.0u | 323.0u |
+| 2024 | 42 | +16.9u | +121.7u | 221.7u |
+| 2025 | 49 | +14.4u | +95.2u | 195.2u |
+
+Kelly formula: `f = (b*p - q) / b` where b=payout, p=our probability, q=1-p. Capped at 0.25x Kelly and max 5% of bankroll per bet. Kelly amplifies returns 4-14x vs flat betting.
+
+## Edge Trend Analysis
+
+| Year | Bets | Win% | ROI | Avg Edge |
+|---|---|---|---|---|
+| 2016 | 47 | 80.9% | +54.4% | 0.222 |
+| 2017 | 55 | 78.2% | +49.3% | 0.233 |
+| 2018 | 66 | 84.8% | +62.0% | 0.227 |
+| 2019 | 85 | 77.6% | +48.2% | 0.238 |
+| 2020 | 93 | 72.0% | +37.5% | 0.235 |
+| 2021 | 41 | 75.6% | +44.3% | 0.251 |
+| 2022 | 98 | 67.3% | +28.6% | 0.235 |
+| 2023 | 63 | 69.8% | +33.3% | 0.223 |
+| 2024 | 42 | 71.4% | +36.4% | 0.252 |
+| 2025 | 49 | 67.3% | +28.6% | 0.235 |
+
+**The edge is declining but still profitable.** 2016-2019 averaged 53% ROI; 2022-2025 averaged 32% ROI. The average edge SIZE hasn't changed (~0.23), but our win RATE is dropping (81% → 68%). Possible causes: market incorporating power-rating signals faster, more parity in college basketball, or natural regression toward a sustainable level. Even at 30% ROI, the strategy is highly profitable.
+
 ## Actionable Strategy
 
 For the upcoming season:

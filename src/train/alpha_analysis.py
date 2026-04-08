@@ -56,7 +56,8 @@ def _load_tourney_odds(data_dir, gender="M"):
         return {}
 
     df = pd.read_csv(odds_path)
-    tourney_path = Path(data_dir) / "kaggle" / ("M" if gender == "M" else "W") + "NCAATourneyCompactResults.csv"
+    prefix = "M" if gender == "M" else "W"
+    tourney_path = Path(data_dir) / "kaggle" / f"{prefix}NCAATourneyCompactResults.csv"
 
     # Build set of tournament game keys (Season, DayNum)
     tourney = pd.read_csv(tourney_path)
@@ -199,8 +200,7 @@ def run_alpha_analysis(data, gender="M", data_dir="data", thresholds=None):
 
         spreads = []
         for _, g in tourney_year.iterrows():
-            low = min(g["WTeamID"], g["LTeamID"])
-            high = max(g["WTeamID"], g["LTeamID"])
+            low, high = g["LowTeam"], g["HighTeam"]
             spread = tourney_odds.get((year, low, high), np.nan)
             spreads.append(spread)
         spreads = np.array(spreads)

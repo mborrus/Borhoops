@@ -198,9 +198,47 @@ Note: Autoresearch (M+W, different CV split) and HPC grid search (M only) use di
 
 **MLflow**: 585+ runs logged. View with `mlflow ui --backend-store-uri file:///home/mborrus/Borhoops/mlruns --port 5001`
 
+## Morning Experiments (April 8)
+
+### Feature Importance (11-feature XGBoost)
+| Feature | Importance |
+|---|---|
+| massey_avg_diff | 32.4% |
+| home | 24.6% |
+| elo_pred | 20.2% |
+| elo_diff | 14.6% |
+| margin_mean_diff | 4.4% |
+| day_num | 1.1% |
+| conf_elo_diff | 0.7% |
+| trank_adjO/D/barthag | <0.7% each |
+| sos_diff | 0.4% |
+
+The model is dominated by Massey + Elo + home court. Barttorvik features add almost nothing beyond what Massey captures.
+
+### Vegas Spread Analysis
+- **Spread is 5th most important feature** in the 40-feature model (6.2%) — it CAN be used
+- **But it's redundant with Massey + Elo** — per-gender model with spread (0.1650) ties the no-spread model (0.1649)
+- Massey ordinals essentially ARE the market consensus — KenPom, Sagarin, etc. are what Vegas uses
+- **Seed_diff is pure noise for regular season training** — always 17 in training, hurts badly when added (0.1709)
+
+### Additional Results
+| Experiment | Brier | Notes |
+|---|---|---|
+| Ensemble isotonic | 0.2006 | Stacking overfits on small tourney samples |
+| Top-5 features | 0.1659 | 5 features get within 0.001 of 11 |
+| Per-gender + spread | 0.1650 | Spread redundant with Massey |
+| Men's-only 11-feat | 0.1891 | Men's harder than women's |
+| NN sweep | in progress | 24/54 configs done |
+| LSTM | in progress | Still precomputing features |
+
+### Phase 3: Ensemble
+Ensemble with isotonic meta-learner (0.2006) doesn't beat single XGBoost (0.1649). The stacking approach overfits because tournament test sets are too small (~130 games) for the meta-learner to calibrate properly.
+
+### Phase 4: Alpha Analysis
+Still running. Will compare model vs Vegas closing lines across 10 years of tournament data.
+
 ## What to try next
 1. Train the 11-feature XGBoost on full data for 2026 submission
-2. Phase 3: stacking ensemble (if NN/LSTM produce competitive results)
-3. Phase 4: alpha analysis vs Vegas
-4. Try actual PyMC BART trees (not the interaction fallback)
-5. Investigate why women's predictions are consistently better than men's
+2. For betting: the model and Vegas agree (spread is redundant), so alpha is likely to be small
+3. Focus on areas where model disagrees with market — these are the betting opportunities
+4. Consider training tournament-specific model on historical tournament games (seed_diff becomes usable)

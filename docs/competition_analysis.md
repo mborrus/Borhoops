@@ -305,7 +305,47 @@ Seeds (3), box scores (18), late-season form (2), Elo (3, 60% carry-over), GLM q
 
 ---
 
-## Solution 7: 2025 1st Place Adaptation (modeh7)
+## Solution 7: 49th Place — LR + XGBoost Blend (Under 50 Solution)
+
+**Source**: [Writeup](https://www.kaggle.com/competitions/march-machine-learning-mania-2026/writeups) by Hassan Abedi (habedi)
+**Score**: ~0.122 (49th/3,485)
+
+### Approach
+Simple LR + XGBoost blend. Joint M/W training with gender indicator. Regular season features, training from 2003+.
+
+### Features
+- **Base**: WinPct, AvgMargin, Seed_num, Elo (75% carry-over), SOS
+- **Massey**: Avg, Median, Std, Best (men's only, neutral defaults for women's)
+- **Box scores**: OE, DE, Tempo, eFG, TORate, FTRate, ORRate, AstRate, StlRate, BlkRate, Opp_eFG, Opp_TORate, NetEff
+- **Recent form**: last 10 games WinPct, AvgMargin, AvgScore
+- **Context**: CoachTourneyExp, IsMens
+
+### Model
+- **LR**: StandardScaler + LogisticRegression(C=3)
+- **XGBoost**: `reg:squarederror` objective (regression on Brier, not classification). 20 seeds averaged.
+- **Blend**: 0.4 × LR + 0.6 × XGBoost
+- **Clipping**: [0.05, 0.95]
+
+### Key Findings
+- **XGBoost with squared error objective** (not binary:logistic) to match Brier scoring directly
+- **20-seed XGBoost ensemble** for variance reduction
+- **40/60 LR/XGB blend** — LR provides linear stability, XGB captures interactions
+- **75% Elo carry-over** — same finding as 3rd place
+- Women's missing men's-only features filled with neutral values (not imputed)
+- **MasseyStd and MasseyBest** as features (we only use avg) — captures rating disagreement
+
+### Testable Ideas
+- [ ] XGBoost with `reg:squarederror` objective instead of `binary:logistic`
+- [ ] Multi-seed XGBoost ensemble (20 seeds, averaged)
+- [ ] LR/XGB blend with optimized weights
+- [ ] MasseyStd (disagreement between rating systems) as a feature
+- [ ] MasseyBest (best ranking across systems) as a feature
+- [ ] Coach tournament experience as a feature
+- [ ] Prediction clipping [0.05, 0.95]
+
+---
+
+## Solution 8: 2025 1st Place Adaptation (modeh7)
 
 **Source**: `kacchanwriting/2025-1st-place-solution-modeh7-2026-adaptation` (137 votes)
 

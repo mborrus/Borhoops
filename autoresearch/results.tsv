@@ -5,3 +5,4 @@ b12c9fb	0.169886	1727.7	discard	XGBoost grid-best all 40 features
 9f49fb6	0.166255	1739.9	discard	XGBoost + polls (33 features)
 8b85552	0.173266	1819.1	discard	XGB+LGB ensemble
 1dac2b3	0.172200	1954.8	discard	XGBoost + isotonic calibration — overfits on small folds
+51f9378	0.165583	1771.4	keep	Power ratings only (16 features) — NEW BEST

@@ -30,13 +30,12 @@ def get_model():
     ])
 
 
-# Power ratings only: Elo + Massey + Barttorvik + key game context
-# Drop rolling box score stats, coach, and derived features (potential noise)
+# Minimal: drop individual Massey systems, keep only avg
+# Hypothesis: 5 individual systems are redundant when avg is present
 FEATURE_SUBSET = [
     "elo_diff", "elo_pred", "home", "day_num",
     "sos_diff", "margin_mean_diff",
-    "massey_pom_diff", "massey_sag_diff", "massey_mor_diff",
-    "massey_dok_diff", "massey_col_diff", "massey_avg_diff",
+    "massey_avg_diff",
     "barthag_diff", "trank_adjO_diff", "trank_adjD_diff",
     "conf_elo_diff",
 ]

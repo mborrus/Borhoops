@@ -10,3 +10,4 @@ b12c9fb	0.169886	1727.7	discard	XGBoost grid-best all 40 features
 b3799bb	0.178491	7527.5	discard	Dart boosting — much worse, very slow
 (side)	0.166151	1889.7	discard	CatBoost 16 features — matches baseline
 1a61732	0.165857	1803.0	discard	XGB n=1000 lr=0.01 — slightly worse than lr=0.03
+403dbfb	0.164918	1771.0	keep	Drop individual Massey, keep avg only (11 features) — NEW BEST

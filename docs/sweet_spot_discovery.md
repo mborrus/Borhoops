@@ -239,6 +239,17 @@ For the upcoming season:
 5. **Expected volume**: ~60-100 bets per season
 6. **Expected ROI**: 25-40% at -110 odds (historically)
 
+## 2026 Kaggle Retroactive Comparison
+
+| Model | 2026 Tournament Brier | Games |
+|---|---|---|
+| **Original Elo** | **0.1283** | 126 |
+| XGBoost 11-feature | 0.1337 | 126 |
+
+The XGBoost model is worse on this specific tournament despite having better LOYO CV scores. On 126 games, variance dominates — the Elo model's more conservative predictions (closer to 0.5) were rewarded by the 2026 tournament's upsets.
+
+This reinforces: for Kaggle (single-tournament scoring), conservative/well-calibrated models win. For betting (thousands of regular season games), the more confident XGBoost model finds exploitable edges. Different objectives, different optimal models.
+
 ## Next Steps
 
 1. **Verify no leakage**: Ensure features are truly pre-game (they should be — build_features records before Elo update)

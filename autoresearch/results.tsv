@@ -21,4 +21,5 @@ cda2589	0.164997	1771.0	discard	11 feat + game_count_avg
 (side)	0.165165	1800.0	discard	11 feat + spread + implied_prob (NaN-native) — women's NaN hurts
 (side)	0.170948	1800.0	discard	11 feat + spread + seed_diff — seed is noise (always 17 in training)
 (side)	0.164995	1800.0	discard	Per-gender (M:13+spread, W:11) — tied with baseline, spread redundant
+(side)	0.189199	1800.0	discard	Men's only 11+spread — spread makes men's WORSE (0.1892 vs 0.1891)
 (side)	0.164931	1800.0	discard	11 feat no scaler — identical, XGB doesn't need scaling

@@ -1,1 +1,10 @@
 0.161553  ALL 14 features (baseline)
+0.161498  drop elo_diff                  delta=-0.000056
+0.161441  drop elo_pred                  delta=-0.000113
+0.161553  drop home                      delta=+0.000000
+0.161488  drop day_num                   delta=-0.000065
+0.161568  drop sos_diff                  delta=+0.000014
+0.161762  drop margin_mean_diff          delta=+0.000209
+0.162054  drop massey_avg_diff           delta=+0.000501
+0.166217  drop barthag_diff              delta=+0.004664
+0.166451  drop trank_adjO_diff           delta=+0.004898

@@ -1,0 +1,18 @@
+{
+  "model": "tourney_147",
+  "results": {
+    "brier": 0.22555,
+    "n_games": 1315,
+    "elapsed_s": 7031.0,
+    "config": {
+      "model": "xgb_reg",
+      "features": "all30",
+      "seeds": true,
+      "interactions": false,
+      "max_depth": 4,
+      "learning_rate": 0.03,
+      "n_seeds": 10,
+      "calibration": "spline"
+    }
+  }
+}

@@ -41,6 +41,12 @@ Override config: 1s 99% R1+R2 + 95% S16, 2s 99% R1 + 85% R2, 3s+4s 99% R1
 
 **Pattern: Override helps in chalky years (1-seeds 8/8 in S16), hurts in upset years.**
 
+Helps: 2/5 years (2016, 2019) — both had 1-seeds 8/8 in S16
+Hurts: 2/5 years (2015, 2018) — 1-seeds lost in S16
+Neutral: 1/5 years (2017) — marginal hurt
+
+Note: Only 5 of 10 years completed before timeout (Elo rebuild per year is slow). Full backtest needs the cached Elo approach to be practical.
+
 ## Conclusion
 
 The seed override is NOT a universal improvement — it's a bet on chalk. In chalky years (+2016, +2019, +2026) it provides 0.001-0.006 improvement. In upset years (-2015, -2018) it costs 0.001-0.003.

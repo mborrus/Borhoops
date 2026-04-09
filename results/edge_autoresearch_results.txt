@@ -1,0 +1,60 @@
+=== Edge Model Autoresearch ===
+
+  LR minimal5 C=1:     bets=495 win=77.2% ROI=+49.3% profit=+244u
+
+=== Add one feature to minimal5 ===
+  +day_num                  : bets=494 win=77.1% ROI=+49.2% profit=+243u
+  +sos_diff                 : bets=500 win=77.0% ROI=+49.0% profit=+245u
+  +barthag_diff             : bets=495 win=77.4% ROI=+49.7% profit=+246u
+  +trank_adjO_diff          : bets=493 win=77.3% ROI=+49.5% profit=+244u
+  +trank_adjD_diff          : bets=491 win=76.4% ROI=+47.7% profit=+234u
+  +conf_elo_diff            : bets=504 win=77.6% ROI=+50.1% profit=+253u
+  +off_eff_r10_diff         : bets=494 win=77.1% ROI=+49.2% profit=+243u
+  +def_eff_r10_diff         : bets=498 win=76.9% ROI=+48.8% profit=+243u
+  +efg_pct_r10_diff         : bets=495 win=77.2% ROI=+49.3% profit=+244u
+  +pace_r10_diff            : bets=496 win=77.4% ROI=+49.8% profit=+247u
+  +margin_std_diff          : bets=498 win=77.1% ROI=+49.2% profit=+245u
+  +win_streak_diff          : bets=503 win=76.5% ROI=+48.0% profit=+242u
+  +rest_days_diff           : bets=494 win=77.5% ROI=+50.0% profit=+247u
+
+=== Drop one from minimal5 ===
+  -elo_diff                 : bets=495 win=77.4% ROI=+49.6% profit=+246u
+  -elo_pred                 : bets=496 win=77.0% ROI=+49.0% profit=+243u
+  -home                     : bets=720 win=65.7% ROI=+27.4% profit=+197u
+  -massey_avg_diff          : bets=225 win=54.2% ROI=+4.9% profit=+11u
+  -margin_mean_diff         : bets=492 win=76.8% ROI=+48.6% profit=+239u
+
+=== C-value sweep (LR minimal5) ===
+  C=  0.01: bets=416 win=78.1% ROI=+51.1% profit=+213u
+  C=  0.10: bets=485 win=77.5% ROI=+50.0% profit=+242u
+  C=  0.50: bets=493 win=77.3% ROI=+49.5% profit=+244u
+  C=  1.00: bets=495 win=77.2% ROI=+49.3% profit=+244u
+  C=  5.00: bets=496 win=77.2% ROI=+49.4% profit=+245u
+  C= 10.00: bets=497 win=77.1% ROI=+49.1% profit=+244u
+  C=100.00: bets=497 win=77.1% ROI=+49.1% profit=+244u
+
+=== Vegas range sweep (LR minimal5 C=1) ===
+  vegas=[0.45,0.55] edge>0.1: bets= 792 win=72.3% ROI=+39.9% profit=+316u
+  vegas=[0.45,0.55] edge>0.15: bets= 495 win=77.2% ROI=+49.3% profit=+244u
+  vegas=[0.45,0.55] edge>0.2: bets= 309 win=80.3% ROI=+54.8% profit=+169u
+  vegas=[0.43,0.57] edge>0.1: bets=2355 win=72.4% ROI=+41.1% profit=+968u
+  vegas=[0.43,0.57] edge>0.15: bets=1531 win=76.4% ROI=+49.3% profit=+755u
+  vegas=[0.43,0.57] edge>0.2: bets= 963 win=78.4% ROI=+53.2% profit=+513u
+  vegas=[0.4,0.6] edge>0.1: bets=4648 win=71.3% ROI=+39.8% profit=+1850u
+  vegas=[0.4,0.6] edge>0.15: bets=3051 win=74.3% ROI=+46.4% profit=+1415u
+  vegas=[0.4,0.6] edge>0.2: bets=1869 win=76.1% ROI=+50.6% profit=+946u
+  vegas=[0.47,0.53] edge>0.1: bets= 246 win=68.7% ROI=+34.0% profit=+84u
+  vegas=[0.47,0.53] edge>0.15: bets= 164 win=73.2% ROI=+42.3% profit=+69u
+  vegas=[0.47,0.53] edge>0.2: bets= 102 win=79.4% ROI=+53.9% profit=+55u
+
+=== Best 4-feature subsets ===
+  win=78.6% bets=429 ROI=+51.9%  ['home', 'massey_avg_diff', 'sos_diff', 'conf_elo_diff']
+  win=78.2% bets=440 ROI=+51.2%  ['home', 'massey_avg_diff', 'barthag_diff', 'conf_elo_diff']
+  win=77.7% bets=467 ROI=+50.4%  ['home', 'massey_avg_diff', 'margin_mean_diff', 'conf_elo_diff']
+  win=77.7% bets=497 ROI=+50.3%  ['elo_pred', 'home', 'massey_avg_diff', 'conf_elo_diff']
+  win=77.4% bets=495 ROI=+49.6%  ['elo_pred', 'home', 'massey_avg_diff', 'margin_mean_diff']
+  win=77.3% bets=472 ROI=+49.6%  ['home', 'massey_avg_diff', 'margin_mean_diff', 'barthag_diff']
+  win=77.0% bets=501 ROI=+49.1%  ['elo_diff', 'home', 'massey_avg_diff', 'conf_elo_diff']
+  win=77.0% bets=444 ROI=+49.0%  ['home', 'massey_avg_diff', 'barthag_diff', 'sos_diff']
+  win=77.0% bets=496 ROI=+49.0%  ['elo_diff', 'home', 'massey_avg_diff', 'margin_mean_diff']
+  win=77.0% bets=495 ROI=+48.9%  ['elo_pred', 'home', 'massey_avg_diff', 'sos_diff']

@@ -142,6 +142,20 @@ def build_srs_lookup(results, seasons=None):
     return lookup
 
 
+def colley_matchup_features(colley_lookup, season, team_a, team_b):
+    """Colley rank difference for a matchup."""
+    a = colley_lookup.get((season, team_a), 175)  # default: mid-pack
+    b = colley_lookup.get((season, team_b), 175)
+    return {"colley_rank_diff": a - b}
+
+
+def srs_matchup_features(srs_lookup, season, team_a, team_b):
+    """SRS rating difference for a matchup."""
+    a = srs_lookup.get((season, team_a), 0.0)
+    b = srs_lookup.get((season, team_b), 0.0)
+    return {"srs_diff": a - b}
+
+
 if __name__ == "__main__":
     # Quick test
     from predict.submission import load_data

@@ -21,6 +21,23 @@ from train.extended_features import (
     ODDS_COLS, POLL_COLS, ROSTER_COLS,
 )
 
+# Per-season Elo/game_count snapshots from the last build_features() call.
+# Access via: from train.features import get_elo_snapshot
+_last_snapshots = {}
+
+def get_elo_snapshot(season):
+    """Get Elo ratings at end of a specific season (from last build_features call)."""
+    return _last_snapshots.get("elo", {}).get(season, {})
+
+def get_gc_snapshot(season):
+    """Get game counts at end of a specific season."""
+    return _last_snapshots.get("gc", {}).get(season, {})
+
+def get_all_snapshots():
+    """Get all per-season Elo and game count snapshots."""
+    return _last_snapshots.get("elo", {}), _last_snapshots.get("gc", {})
+
+
 # -- Feature column groups (all are low_team - high_team diffs) ----------------
 
 BASE_COLS = ["elo_diff", "elo_pred", "home", "day_num", "game_count_avg"]
@@ -178,6 +195,8 @@ def build_features(results, conferences, hfa_dict, location_dict,
     game_counts = {}
     team_states = {}
     conf_elo_means = {}
+    elo_snapshots = {}
+    gc_snapshots = {}
     team_conf_lookup = _build_team_conf_lookup(conferences)
     barttorvik_lookup = _build_barttorvik_lookup(barttorvik)
     rows = []
@@ -393,9 +412,18 @@ def build_features(results, conferences, hfa_dict, location_dict,
             for r in df.itertuples()
         }
 
+        # Save per-season snapshot (for caching / backtesting)
+        elo_snapshots[season] = dict(elo_ratings)
+        gc_snapshots[season] = dict(game_counts)
+
     features_df = pd.DataFrame(rows)
     if features_df.empty:
         features_df = pd.DataFrame(columns=FEATURE_COLS + ["team_low", "team_high", "win", "season"])
+
+    # Store snapshots in module-level dict for callers that need per-season Elo
+    _last_snapshots["elo"] = elo_snapshots
+    _last_snapshots["gc"] = gc_snapshots
+
     return features_df, elo_ratings, game_counts, team_states, conf_elo_means
 
 

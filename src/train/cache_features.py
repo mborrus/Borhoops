@@ -31,7 +31,7 @@ import pandas as pd
 
 from predict.elo import add_game_counts
 from predict.submission import load_data, _build_hfa_dict, _build_location_dict
-from train.features import build_features, FEATURE_COLS, _build_barttorvik_lookup
+from train.features import build_features, FEATURE_COLS, _build_barttorvik_lookup, get_all_snapshots
 
 
 CACHE_DIR = Path("data/cache")
@@ -113,6 +113,21 @@ def cache_gender(data, gender, seasons=None):
     with open(CACHE_DIR / f"barttorvik_lookup_{gender}.pkl", "wb") as f:
         pickle.dump(barttorvik_lookup, f)
 
+    # Save per-season Elo snapshots (for backtesting without rebuilding)
+    elo_snaps, gc_snaps = get_all_snapshots()
+    snaps_json = {
+        str(s): {str(t): r for t, r in ratings.items()}
+        for s, ratings in elo_snaps.items()
+    }
+    gc_snaps_json = {
+        str(s): {str(t): c for t, c in counts.items()}
+        for s, counts in gc_snaps.items()
+    }
+    with open(CACHE_DIR / f"elo_snapshots_{gender}.json", "w") as f:
+        json.dump(snaps_json, f)
+    with open(CACHE_DIR / f"gc_snapshots_{gender}.json", "w") as f:
+        json.dump(gc_snaps_json, f)
+
     return len(features_df)
 
 
@@ -139,6 +154,36 @@ def load_cached_features(gender):
         barttorvik_lookup = pickle.load(f)
 
     return features_df, elo_ratings, game_counts, team_states, conf_elo_means, barttorvik_lookup
+
+
+def load_cached_elo_snapshot(gender, season):
+    """Load Elo ratings for a specific season from cache."""
+    path = CACHE_DIR / f"elo_snapshots_{gender}.json"
+    if not path.exists():
+        return {}, {}
+    with open(path) as f:
+        elo_snaps = json.load(f)
+    gc_path = CACHE_DIR / f"gc_snapshots_{gender}.json"
+    with open(gc_path) as f:
+        gc_snaps = json.load(f)
+    elo = {int(k): v for k, v in elo_snaps.get(str(season), {}).items()}
+    gc = {int(k): v for k, v in gc_snaps.get(str(season), {}).items()}
+    return elo, gc
+
+
+def load_all_elo_snapshots(gender):
+    """Load all per-season Elo snapshots from cache."""
+    path = CACHE_DIR / f"elo_snapshots_{gender}.json"
+    if not path.exists():
+        return {}, {}
+    with open(path) as f:
+        raw = json.load(f)
+    elo_snaps = {int(s): {int(t): r for t, r in ratings.items()} for s, ratings in raw.items()}
+    gc_path = CACHE_DIR / f"gc_snapshots_{gender}.json"
+    with open(gc_path) as f:
+        gc_raw = json.load(f)
+    gc_snaps = {int(s): {int(t): c for t, c in counts.items()} for s, counts in gc_raw.items()}
+    return elo_snaps, gc_snaps
 
 
 def is_cache_fresh():

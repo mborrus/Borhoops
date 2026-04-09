@@ -1,0 +1,44 @@
+Computing Colley + SRS...
+Building features...
+=== Edge Model with SRS + Colley ===
+
+  win=77.7% bets=467 ROI=+50.4% profit=+236u  v=[0.45,0.55] e>0.15  Previous best (4 feat)
+  win=83.6% bets=280 ROI=+61.5% profit=+172u  v=[0.45,0.55] e>0.2  Previous best (4 feat)
+  win=76.5% bets=1415 ROI=+49.4% profit=+699u  v=[0.43,0.57] e>0.15  Previous best (4 feat)
+  win=84.3% bets= 89 ROI=+63.7% profit=+57u  v=[0.47,0.53] e>0.2  Previous best (4 feat)
+  win=77.2% bets=457 ROI=+49.3% profit=+225u  v=[0.45,0.55] e>0.15  + srs_diff
+  win=79.9% bets=273 ROI=+54.3% profit=+148u  v=[0.45,0.55] e>0.2  + srs_diff
+  win=76.4% bets=1380 ROI=+49.4% profit=+682u  v=[0.43,0.57] e>0.15  + srs_diff
+  win=81.1% bets= 95 ROI=+57.4% profit=+55u  v=[0.47,0.53] e>0.2  + srs_diff
+  win=76.8% bets=613 ROI=+48.7% profit=+299u  v=[0.45,0.55] e>0.15  + colley_diff
+  win=81.5% bets=433 ROI=+57.7% profit=+250u  v=[0.45,0.55] e>0.2  + colley_diff
+  win=75.9% bets=1887 ROI=+48.0% profit=+906u  v=[0.43,0.57] e>0.15  + colley_diff
+  win=79.0% bets=143 ROI=+54.1% profit=+77u  v=[0.47,0.53] e>0.2  + colley_diff
+  win=75.8% bets=621 ROI=+46.7% profit=+290u  v=[0.45,0.55] e>0.15  + srs + colley
+  win=79.7% bets=424 ROI=+54.3% profit=+230u  v=[0.45,0.55] e>0.2  + srs + colley
+  win=75.2% bets=1876 ROI=+46.7% profit=+876u  v=[0.43,0.57] e>0.15  + srs + colley
+  win=78.2% bets=142 ROI=+51.9% profit=+74u  v=[0.47,0.53] e>0.2  + srs + colley
+  win=77.2% bets=457 ROI=+49.3% profit=+225u  v=[0.45,0.55] e>0.15  srs replacing conf_elo
+  win=80.2% bets=268 ROI=+55.0% profit=+147u  v=[0.45,0.55] e>0.2  srs replacing conf_elo
+  win=76.5% bets=1377 ROI=+49.5% profit=+682u  v=[0.43,0.57] e>0.15  srs replacing conf_elo
+  win=80.6% bets= 93 ROI=+56.7% profit=+53u  v=[0.47,0.53] e>0.2  srs replacing conf_elo
+  win=77.2% bets=399 ROI=+49.4% profit=+197u  v=[0.45,0.55] e>0.15  home + massey + srs
+  win=82.7% bets=220 ROI=+59.8% profit=+131u  v=[0.45,0.55] e>0.2  home + massey + srs
+  win=76.9% bets=1201 ROI=+50.3% profit=+604u  v=[0.43,0.57] e>0.15  home + massey + srs
+  win=82.1% bets= 78 ROI=+59.4% profit=+46u  v=[0.47,0.53] e>0.2  home + massey + srs
+  win=77.2% bets=404 ROI=+49.5% profit=+200u  v=[0.45,0.55] e>0.15  home + massey + srs + conf_elo
+  win=82.7% bets=220 ROI=+59.7% profit=+131u  v=[0.45,0.55] e>0.2  home + massey + srs + conf_elo
+  win=76.8% bets=1212 ROI=+50.3% profit=+609u  v=[0.43,0.57] e>0.15  home + massey + srs + conf_elo
+  win=82.3% bets= 79 ROI=+59.8% profit=+47u  v=[0.47,0.53] e>0.2  home + massey + srs + conf_elo
+
+=== Best combos including SRS ===
+  win=79.3% bets=517 ROI=+53.4% profit=+276u  ['home', 'conf_elo_diff', 'sos_diff', 'srs_diff', 'colley_diff']
+  win=79.3% bets=516 ROI=+53.4% profit=+275u  ['home', 'conf_elo_diff', 'srs_diff', 'colley_diff']
+  win=78.7% bets=511 ROI=+52.2% profit=+267u  ['home', 'sos_diff', 'srs_diff', 'colley_diff']
+  win=78.7% bets=520 ROI=+52.2% profit=+271u  ['home', 'conf_elo_diff', 'barthag_diff', 'srs_diff', 'colley_diff']
+  win=78.6% bets=515 ROI=+52.2% profit=+269u  ['home', 'srs_diff', 'colley_diff']
+  win=78.6% bets=515 ROI=+52.2% profit=+269u  ['home', 'barthag_diff', 'sos_diff', 'srs_diff', 'colley_diff']
+  win=78.5% bets=516 ROI=+51.9% profit=+268u  ['home', 'barthag_diff', 'srs_diff', 'colley_diff']
+  win=78.0% bets=595 ROI=+50.8% profit=+302u  ['home', 'margin_mean_diff', 'sos_diff', 'srs_diff', 'colley_diff']
+  win=77.8% bets=582 ROI=+50.5% profit=+294u  ['home', 'margin_mean_diff', 'barthag_diff', 'srs_diff', 'colley_diff']
+  win=77.6% bets=648 ROI=+49.9% profit=+324u  ['home', 'elo_diff', 'barthag_diff', 'srs_diff', 'colley_diff']

@@ -1,0 +1,19 @@
+{
+  "model": "tv2_25",
+  "results": {
+    "brier": 0.16817,
+    "n_games": 1315,
+    "config": {
+      "model": "xgb",
+      "features": "b11",
+      "seeds": true,
+      "colley": false,
+      "srs": false,
+      "interactions": false,
+      "max_depth": 2,
+      "C_m": null,
+      "C_w": null
+    },
+    "elapsed_s": 715.3
+  }
+}

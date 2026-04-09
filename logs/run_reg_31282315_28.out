@@ -1,0 +1,3 @@
+Total configs: 156
+Precomputing Colley + SRS...
+Config 28: {'model': 'xgb_reg', 'features': 'b11', 'seeds': True, 'colley': False, 'srs': True, 'max_depth': 2, 'calibration': 'logistic'}

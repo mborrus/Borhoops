@@ -1,0 +1,5 @@
+Total configs: 84
+Precomputing Colley + SRS...
+  Colley: 16635, SRS: 16635
+Config 32: {'model': 'xgb', 'features': 'b8', 'seeds': True, 'colley': True, 'srs': True, 'interactions': False, 'max_depth': 2, 'C_m': None, 'C_w': None}
+  Brier: 0.164226 (715s) xgb b8 colley=True srs=True d=2

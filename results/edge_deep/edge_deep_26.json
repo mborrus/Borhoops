@@ -1,0 +1,1007 @@
+{
+  "model": "edge_deep_26",
+  "results": {
+    "batch": [
+      {
+        "n_bets": 475,
+        "win_rate": 0.7684,
+        "roi": 0.4868,
+        "profit": 231.2,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "sos_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1300
+        }
+      },
+      {
+        "n_bets": 432,
+        "win_rate": 0.787,
+        "roi": 0.5221,
+        "profit": 225.5,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1301
+        }
+      },
+      {
+        "n_bets": 448,
+        "win_rate": 0.7746,
+        "roi": 0.4984,
+        "profit": 223.3,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1302
+        }
+      },
+      {
+        "n_bets": 445,
+        "win_rate": 0.7888,
+        "roi": 0.5264,
+        "profit": 234.3,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1303
+        }
+      },
+      {
+        "n_bets": 451,
+        "win_rate": 0.7694,
+        "roi": 0.4885,
+        "profit": 220.3,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1304
+        }
+      },
+      {
+        "n_bets": 440,
+        "win_rate": 0.7773,
+        "roi": 0.5039,
+        "profit": 221.7,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1305
+        }
+      },
+      {
+        "n_bets": 466,
+        "win_rate": 0.779,
+        "roi": 0.508,
+        "profit": 236.7,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "conf_elo_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1306
+        }
+      },
+      {
+        "n_bets": 448,
+        "win_rate": 0.7701,
+        "roi": 0.49,
+        "profit": 219.5,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1307
+        }
+      },
+      {
+        "n_bets": 445,
+        "win_rate": 0.7708,
+        "roi": 0.4914,
+        "profit": 218.7,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1308
+        }
+      },
+      {
+        "n_bets": 469,
+        "win_rate": 0.7783,
+        "roi": 0.506,
+        "profit": 237.3,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1309
+        }
+      },
+      {
+        "n_bets": 466,
+        "win_rate": 0.7704,
+        "roi": 0.4913,
+        "profit": 229.0,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1310
+        }
+      },
+      {
+        "n_bets": 315,
+        "win_rate": 0.5524,
+        "roi": 0.068,
+        "profit": 21.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "sos_diff",
+            "conf_elo_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1311
+        }
+      },
+      {
+        "n_bets": 330,
+        "win_rate": 0.5515,
+        "roi": 0.0663,
+        "profit": 21.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "sos_diff",
+            "trank_adjO_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1312
+        }
+      },
+      {
+        "n_bets": 339,
+        "win_rate": 0.5457,
+        "roi": 0.0548,
+        "profit": 18.6,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "sos_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1313
+        }
+      },
+      {
+        "n_bets": 318,
+        "win_rate": 0.5755,
+        "roi": 0.1146,
+        "profit": 36.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "sos_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1314
+        }
+      },
+      {
+        "n_bets": 329,
+        "win_rate": 0.5593,
+        "roi": 0.0813,
+        "profit": 26.7,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "sos_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1315
+        }
+      },
+      {
+        "n_bets": 331,
+        "win_rate": 0.5317,
+        "roi": 0.0328,
+        "profit": 10.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1316
+        }
+      },
+      {
+        "n_bets": 331,
+        "win_rate": 0.5317,
+        "roi": 0.0314,
+        "profit": 10.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1317
+        }
+      },
+      {
+        "n_bets": 326,
+        "win_rate": 0.5368,
+        "roi": 0.0425,
+        "profit": 13.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "conf_elo_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1318
+        }
+      },
+      {
+        "n_bets": 325,
+        "win_rate": 0.5415,
+        "roi": 0.0513,
+        "profit": 16.7,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "conf_elo_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1319
+        }
+      },
+      {
+        "n_bets": 357,
+        "win_rate": 0.535,
+        "roi": 0.036,
+        "profit": 12.8,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1320
+        }
+      },
+      {
+        "n_bets": 348,
+        "win_rate": 0.5546,
+        "roi": 0.0748,
+        "profit": 26.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1321
+        }
+      },
+      {
+        "n_bets": 352,
+        "win_rate": 0.5568,
+        "roi": 0.0796,
+        "profit": 28.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "trank_adjO_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1322
+        }
+      },
+      {
+        "n_bets": 349,
+        "win_rate": 0.5444,
+        "roi": 0.0556,
+        "profit": 19.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1323
+        }
+      },
+      {
+        "n_bets": 354,
+        "win_rate": 0.5395,
+        "roi": 0.0457,
+        "profit": 16.2,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1324
+        }
+      },
+      {
+        "n_bets": 349,
+        "win_rate": 0.553,
+        "roi": 0.0721,
+        "profit": 25.2,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "barthag_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1325
+        }
+      },
+      {
+        "n_bets": 328,
+        "win_rate": 0.5579,
+        "roi": 0.079,
+        "profit": 25.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1326
+        }
+      },
+      {
+        "n_bets": 341,
+        "win_rate": 0.5396,
+        "roi": 0.0444,
+        "profit": 15.1,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1327
+        }
+      },
+      {
+        "n_bets": 333,
+        "win_rate": 0.5285,
+        "roi": 0.026,
+        "profit": 8.7,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1328
+        }
+      },
+      {
+        "n_bets": 333,
+        "win_rate": 0.5195,
+        "roi": 0.0078,
+        "profit": 2.6,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1329
+        }
+      },
+      {
+        "n_bets": 324,
+        "win_rate": 0.5525,
+        "roi": 0.067,
+        "profit": 21.7,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1330
+        }
+      },
+      {
+        "n_bets": 340,
+        "win_rate": 0.5647,
+        "roi": 0.0913,
+        "profit": 31.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1331
+        }
+      },
+      {
+        "n_bets": 347,
+        "win_rate": 0.562,
+        "roi": 0.086,
+        "profit": 29.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "trank_adjO_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1332
+        }
+      },
+      {
+        "n_bets": 361,
+        "win_rate": 0.5568,
+        "roi": 0.075,
+        "profit": 27.1,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1333
+        }
+      },
+      {
+        "n_bets": 364,
+        "win_rate": 0.5632,
+        "roi": 0.0904,
+        "profit": 32.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1334
+        }
+      },
+      {
+        "n_bets": 363,
+        "win_rate": 0.5289,
+        "roi": 0.0235,
+        "profit": 8.5,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "sos_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1335
+        }
+      },
+      {
+        "n_bets": 333,
+        "win_rate": 0.5345,
+        "roi": 0.0361,
+        "profit": 12.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1336
+        }
+      },
+      {
+        "n_bets": 366,
+        "win_rate": 0.5246,
+        "roi": 0.0162,
+        "profit": 5.9,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1337
+        }
+      },
+      {
+        "n_bets": 367,
+        "win_rate": 0.5232,
+        "roi": 0.0139,
+        "profit": 5.1,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1338
+        }
+      },
+      {
+        "n_bets": 353,
+        "win_rate": 0.5156,
+        "roi": -0.0027,
+        "profit": -1.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1339
+        }
+      },
+      {
+        "n_bets": 352,
+        "win_rate": 0.5142,
+        "roi": -0.0039,
+        "profit": -1.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1340
+        }
+      },
+      {
+        "n_bets": 378,
+        "win_rate": 0.5291,
+        "roi": 0.0254,
+        "profit": 9.6,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "conf_elo_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1341
+        }
+      },
+      {
+        "n_bets": 357,
+        "win_rate": 0.5518,
+        "roi": 0.07,
+        "profit": 25.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1342
+        }
+      },
+      {
+        "n_bets": 356,
+        "win_rate": 0.5506,
+        "roi": 0.0673,
+        "profit": 24.0,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "trank_adjO_diff",
+            "trank_adjD_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1343
+        }
+      },
+      {
+        "n_bets": 405,
+        "win_rate": 0.5457,
+        "roi": 0.0578,
+        "profit": 23.4,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "trank_adjO_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1344
+        }
+      },
+      {
+        "n_bets": 409,
+        "win_rate": 0.5159,
+        "roi": -0.0019,
+        "profit": -0.8,
+        "config": {
+          "features": [
+            "home",
+            "margin_mean_diff",
+            "trank_adjD_diff",
+            "off_eff_r10_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1345
+        }
+      },
+      {
+        "n_bets": 452,
+        "win_rate": 0.5465,
+        "roi": 0.0611,
+        "profit": 27.6,
+        "config": {
+          "features": [
+            "home",
+            "barthag_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "trank_adjO_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1346
+        }
+      },
+      {
+        "n_bets": 449,
+        "win_rate": 0.5479,
+        "roi": 0.0634,
+        "profit": 28.5,
+        "config": {
+          "features": [
+            "home",
+            "barthag_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "trank_adjD_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1347
+        }
+      },
+      {
+        "n_bets": 410,
+        "win_rate": 0.6073,
+        "roi": 0.1769,
+        "profit": 72.5,
+        "config": {
+          "features": [
+            "home",
+            "barthag_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "off_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1348
+        }
+      },
+      {
+        "n_bets": 442,
+        "win_rate": 0.5385,
+        "roi": 0.0433,
+        "profit": 19.1,
+        "config": {
+          "features": [
+            "home",
+            "barthag_diff",
+            "sos_diff",
+            "conf_elo_diff",
+            "def_eff_r10_diff"
+          ],
+          "C": 1.0,
+          "vegas_lo": 0.45,
+          "vegas_hi": 0.55,
+          "edge_thresh": 0.15,
+          "id": 1349
+        }
+      }
+    ]
+  }
+}

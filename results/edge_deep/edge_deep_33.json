@@ -1,0 +1,26 @@
+{
+  "model": "edge_deep_33",
+  "results": {
+    "batch": [
+      {
+        "n_bets": 62,
+        "win_rate": 0.8226,
+        "roi": 0.5926,
+        "profit": 36.7,
+        "config": {
+          "features": [
+            "home",
+            "massey_avg_diff",
+            "margin_mean_diff",
+            "conf_elo_diff"
+          ],
+          "C": 10.0,
+          "vegas_lo": 0.47,
+          "vegas_hi": 0.53,
+          "edge_thresh": 0.25,
+          "id": 1650
+        }
+      }
+    ]
+  }
+}

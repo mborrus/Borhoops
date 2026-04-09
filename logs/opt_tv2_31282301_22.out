@@ -1,0 +1,5 @@
+Total configs: 84
+Precomputing Colley + SRS...
+  Colley: 16635, SRS: 16635
+Config 22: {'model': 'lr', 'features': 'b11', 'seeds': True, 'colley': False, 'srs': False, 'interactions': False, 'C_m': 100.0, 'C_w': 0.15}
+  Brier: 0.164288 (729s) lr b11 colley=False srs=False C_m=100.0 C_w=0.15

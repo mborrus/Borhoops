@@ -1,0 +1,18 @@
+{
+  "model": "tv2_79",
+  "results": {
+    "brier": 0.170508,
+    "n_games": 1315,
+    "config": {
+      "model": "lr",
+      "features": "b5",
+      "seeds": true,
+      "colley": false,
+      "srs": false,
+      "interactions": false,
+      "C_m": 50.0,
+      "C_w": 0.3
+    },
+    "elapsed_s": 717.4
+  }
+}

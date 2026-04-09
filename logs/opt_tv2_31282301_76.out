@@ -1,0 +1,5 @@
+Total configs: 84
+Precomputing Colley + SRS...
+  Colley: 16635, SRS: 16635
+Config 76: {'model': 'lgb', 'features': 'b5', 'seeds': True, 'colley': False, 'srs': True, 'interactions': False, 'max_depth': 3, 'C_m': None, 'C_w': None}
+  Brier: 0.164810 (716s) lgb b5 colley=False srs=True d=3

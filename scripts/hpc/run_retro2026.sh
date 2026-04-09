@@ -15,8 +15,8 @@ trap "rm -rf $LOCAL" EXIT
 
 cp -r /home/mborrus/Borhoops/data $LOCAL/data
 cp -r /home/mborrus/Borhoops/src $LOCAL/src
-cp /tmp/tourney_2026_espn.csv $LOCAL/tourney_2026_espn.csv
-cp /tmp/original_2026_submission.csv $LOCAL/original_2026_submission.csv
+cp /home/mborrus/Borhoops/data/derived/tourney_2026_espn.csv $LOCAL/tourney_2026_espn.csv
+cp /home/mborrus/Borhoops/data/derived/original_2026_submission.csv $LOCAL/original_2026_submission.csv
 
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate borhoops

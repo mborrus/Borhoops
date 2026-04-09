@@ -1,0 +1,3 @@
+Total configs: 30
+Config 15: {'model': 'xgb', 'features': 'massey_detail', 'max_depth': 2, 'learning_rate': 0.03}
+  Sweet 45-55%: 678 bets, win=76.5%, ROI=+47.9% (60s)

@@ -1,0 +1,3 @@
+Total configs: 30
+Config 20: {'model': 'xgb', 'features': 'efficiency_focus', 'max_depth': 2, 'learning_rate': 0.03}
+  Sweet 45-55%: 511 bets, win=75.1%, ROI=+45.3% (60s)

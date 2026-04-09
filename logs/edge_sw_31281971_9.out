@@ -1,0 +1,3 @@
+Total configs: 30
+Config 9: {'model': 'lr', 'features': 'behavioral', 'C': 1.0}
+  Sweet 45-55%: 426 bets, win=51.6%, ROI=+0.1% (56s)

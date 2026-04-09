@@ -1,0 +1,86 @@
+{
+  "model": "edge_25",
+  "results": {
+    "sweet_spot_45_55": {
+      "n_bets": 546,
+      "win_rate": 0.7527,
+      "profit": 248.6,
+      "roi": 0.4554
+    },
+    "sweet_spot_40_60": {
+      "n_bets": 3290,
+      "win_rate": 0.7343,
+      "profit": 1456.1,
+      "roi": 0.4426
+    },
+    "per_year": {
+      "2016": {
+        "n_bets": 47,
+        "win_rate": 0.7872,
+        "profit": 24.5,
+        "roi": 0.5211
+      },
+      "2017": {
+        "n_bets": 54,
+        "win_rate": 0.7778,
+        "profit": 28.2,
+        "roi": 0.5223
+      },
+      "2018": {
+        "n_bets": 62,
+        "win_rate": 0.871,
+        "profit": 41.5,
+        "roi": 0.6686
+      },
+      "2019": {
+        "n_bets": 75,
+        "win_rate": 0.7467,
+        "profit": 31.8,
+        "roi": 0.4246
+      },
+      "2020": {
+        "n_bets": 83,
+        "win_rate": 0.747,
+        "profit": 36.2,
+        "roi": 0.4361
+      },
+      "2021": {
+        "n_bets": 37,
+        "win_rate": 0.7568,
+        "profit": 17.6,
+        "roi": 0.4748
+      },
+      "2022": {
+        "n_bets": 31,
+        "win_rate": 0.6452,
+        "profit": 6.9,
+        "roi": 0.223
+      },
+      "2023": {
+        "n_bets": 61,
+        "win_rate": 0.7213,
+        "profit": 25.9,
+        "roi": 0.4243
+      },
+      "2024": {
+        "n_bets": 47,
+        "win_rate": 0.7447,
+        "profit": 21.7,
+        "roi": 0.4612
+      },
+      "2025": {
+        "n_bets": 49,
+        "win_rate": 0.6735,
+        "profit": 14.4,
+        "roi": 0.2943
+      }
+    },
+    "config": {
+      "model": "xgb",
+      "features": "minimal5",
+      "max_depth": 2,
+      "learning_rate": 0.03
+    },
+    "elapsed_s": 60.0
+  }
+}

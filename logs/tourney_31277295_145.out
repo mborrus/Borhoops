@@ -1,0 +1,4 @@
+Total configs: 180
+Config 145: {'model': 'xgb_reg', 'features': 'all30', 'seeds': True, 'interactions': False, 'max_depth': 2, 'learning_rate': 0.03, 'n_seeds': 10, 'calibration': 'spline'}
+  Brier: 0.227271 (760.3s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_145.json

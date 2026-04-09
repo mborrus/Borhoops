@@ -1,0 +1,4 @@
+Total configs: 180
+Config 178: {'model': 'lgb_clf', 'features': 'all30', 'seeds': False, 'interactions': False, 'max_depth': 3, 'learning_rate': 0.05}
+  Brier: 0.184798 (742.3s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_178.json

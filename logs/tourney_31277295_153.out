@@ -1,0 +1,4 @@
+Total configs: 180
+Config 153: {'model': 'lr', 'features': 'all30', 'seeds': False, 'interactions': True, 'C': 100.0, 'clip_lo': 0.03, 'clip_hi': 0.97}
+  Brier: 0.177462 (742.7s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_153.json

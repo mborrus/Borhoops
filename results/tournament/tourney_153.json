@@ -1,0 +1,17 @@
+{
+  "model": "tourney_153",
+  "results": {
+    "brier": 0.177462,
+    "n_games": 1315,
+    "elapsed_s": 742.7,
+    "config": {
+      "model": "lr",
+      "features": "all30",
+      "seeds": false,
+      "interactions": true,
+      "C": 100.0,
+      "clip_lo": 0.03,
+      "clip_hi": 0.97
+    }
+  }
+}

@@ -1,0 +1,4 @@
+Total configs: 180
+Config 171: {'model': 'xgb_clf', 'features': 'all30', 'seeds': False, 'interactions': False, 'max_depth': 3, 'learning_rate': 0.03, 'n_seeds': 10}
+  Brier: 0.181227 (766.9s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_171.json

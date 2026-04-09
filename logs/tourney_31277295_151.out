@@ -1,0 +1,4 @@
+Total configs: 180
+Config 151: {'model': 'lr', 'features': 'all30', 'seeds': False, 'interactions': True, 'C': 1.0, 'clip_lo': 0.03, 'clip_hi': 0.97}
+  Brier: 0.175784 (742.9s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_151.json

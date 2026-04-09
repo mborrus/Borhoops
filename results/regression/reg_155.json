@@ -1,0 +1,16 @@
+{
+  "model": "reg_155",
+  "results": {
+    "brier": 0.16931,
+    "n_games": 1315,
+    "config": {
+      "model": "ridge",
+      "features": "b5",
+      "seeds": true,
+      "colley": false,
+      "srs": false,
+      "calibration": "logistic"
+    },
+    "elapsed_s": 1176.1
+  }
+}

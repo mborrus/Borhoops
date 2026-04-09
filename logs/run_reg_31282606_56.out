@@ -1,0 +1,4 @@
+Total configs: 156
+Precomputing Colley + SRS...
+Config 56: {'model': 'xgb_reg', 'features': 'b8', 'seeds': True, 'colley': True, 'srs': True, 'max_depth': 3, 'calibration': 'spline5'}
+  Brier: 0.165407 (718s)

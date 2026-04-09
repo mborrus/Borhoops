@@ -93,4 +93,21 @@ Top 5:
 | Apr 9 | LR b8 + SRS (no Colley) | 0.1610 | Drop redundant features |
 | **Apr 9** | **Ridge regression + logistic cal** | **0.1592** | **Point-diff regression** |
 
-**Total improvement: 0.0070 Brier from baseline.** Ridge regression is a 0.002 jump from the best classification model.
+**Total improvement: 0.0072 Brier from baseline.** Ridge regression is the clear winner.
+
+## Regression Sweep FINAL (156/156 configs)
+
+| Brier | Model | Features | Calibration | Colley | SRS |
+|---|---|---|---|---|---|
+| **0.1590** | Ridge | b11 | logistic | No | Yes |
+| 0.1591 | Ridge | b11 | spline5 | No | Yes |
+| 0.1592 | Ridge | b11 | logistic | Yes | Yes |
+| 0.1595 | Ridge | b8 | logistic | No | Yes |
+| 0.1623 | Ridge | b11 | logistic | Yes | No SRS |
+| 0.1628 | XGB reg | b11 | spline5 | Yes | Yes |
+| 0.1630 | LGB reg | b11 | spline5 | Yes | Yes |
+| 0.1635 | Ridge | b5 | logistic | No | Yes |
+
+**Ridge dominates** — 0.004 better than tree-based regression. Same finding as classification: linear models win on small tournament data (~1,300 games).
+
+More features help for regression (b11 > b8 > b5) — opposite of classification where b8 won. Regression has a richer training signal (continuous margin vs binary outcome) so it can use more features without overfitting.

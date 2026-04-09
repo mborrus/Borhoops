@@ -1,0 +1,17 @@
+{
+  "model": "reg_75",
+  "results": {
+    "brier": 0.168133,
+    "n_games": 1315,
+    "config": {
+      "model": "lgb_reg",
+      "features": "b8",
+      "seeds": true,
+      "colley": true,
+      "srs": false,
+      "max_depth": 3,
+      "calibration": "logistic"
+    },
+    "elapsed_s": 1181.5
+  }
+}

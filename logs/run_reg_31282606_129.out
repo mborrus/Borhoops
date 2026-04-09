@@ -1,0 +1,4 @@
+Total configs: 156
+Precomputing Colley + SRS...
+Config 129: {'model': 'ridge', 'features': 'b5', 'seeds': True, 'colley': True, 'srs': False, 'calibration': 'logistic'}
+  Brier: 0.169625 (1195s)

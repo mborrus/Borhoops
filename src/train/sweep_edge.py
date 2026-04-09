@@ -125,7 +125,7 @@ def ml_to_payout(ml):
         return 100 / abs(ml)
 
 
-def evaluate_edge(cfg, data):
+def evaluate_edge(cfg, data, data_dir="data"):
     """Evaluate one edge model config on regular season sweet spot."""
     feat_list = FEATURE_SETS[cfg["features"]]
     feat_idx = [FEATURE_COLS.index(c) for c in feat_list]
@@ -159,7 +159,7 @@ def evaluate_edge(cfg, data):
     seasons = features_df["season"].values
 
     # Load ML odds
-    odds = pd.read_csv("data/derived/ncaab_odds.csv")
+    odds = pd.read_csv(f"{data_dir}/derived/ncaab_odds.csv")
     odds = odds[(odds["HomeML"] != 0) & (odds["AwayML"] != 0) &
                 odds["HomeML"].notna() & odds["AwayML"].notna()]
     ml_lookup = {}
@@ -287,13 +287,14 @@ def evaluate_edge(cfg, data):
 def main():
     parser = argparse.ArgumentParser(description="Edge model sweep")
     parser.add_argument("--config-index", type=int, default=None)
+    parser.add_argument("--data-dir", default="data")
     parser.add_argument("--output-dir", default="results/edge_sweep")
     args = parser.parse_args()
 
     configs = _build_configs()
     print(f"Total configs: {len(configs)}")
 
-    data = prepare_data("data")
+    data = prepare_data(args.data_dir)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -304,7 +305,7 @@ def main():
         cfg = configs[args.config_index]
         print(f"Config {args.config_index}: {cfg}")
         t0 = time.time()
-        result = evaluate_edge(cfg, data)
+        result = evaluate_edge(cfg, data, args.data_dir)
         elapsed = time.time() - t0
         ss = result["sweet_spot_45_55"]
         print(f"  Sweet 45-55%: {ss.get('n_bets',0)} bets, "
@@ -315,7 +316,7 @@ def main():
     else:
         for i, cfg in enumerate(configs):
             t0 = time.time()
-            result = evaluate_edge(cfg, data)
+            result = evaluate_edge(cfg, data, args.data_dir)
             elapsed = time.time() - t0
             ss = result["sweet_spot_45_55"]
             wr = ss.get("win_rate", 0)

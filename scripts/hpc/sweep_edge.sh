@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=edge_sw
+#SBATCH --job-name=cv
 #SBATCH --partition=scratch
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
@@ -23,4 +23,5 @@ conda activate borhoops
 cd $LOCAL/src
 PYTHONPATH=$LOCAL/src python -u -m train.sweep_edge \
     --config-index $SLURM_ARRAY_TASK_ID \
+    --data-dir $LOCAL/data \
     --output-dir /home/mborrus/Borhoops/results/edge_sweep

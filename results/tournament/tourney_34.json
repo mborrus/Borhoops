@@ -1,0 +1,17 @@
+{
+  "model": "tourney_34",
+  "results": {
+    "brier": 0.175047,
+    "n_games": 1315,
+    "elapsed_s": 756.9,
+    "config": {
+      "model": "xgb_clf",
+      "features": "base11",
+      "seeds": false,
+      "interactions": true,
+      "max_depth": 2,
+      "learning_rate": 0.03,
+      "n_seeds": 10
+    }
+  }
+}

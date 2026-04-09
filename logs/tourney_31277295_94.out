@@ -1,0 +1,4 @@
+Total configs: 180
+Config 94: {'model': 'xgb_clf', 'features': 'extended17', 'seeds': False, 'interactions': True, 'max_depth': 2, 'learning_rate': 0.03, 'n_seeds': 10}
+  Brier: 0.177523 (756.4s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_94.json

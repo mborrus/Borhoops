@@ -1,0 +1,4 @@
+Total configs: 180
+Config 31: {'model': 'lr', 'features': 'base11', 'seeds': False, 'interactions': True, 'C': 1.0, 'clip_lo': 0.03, 'clip_hi': 0.97}
+  Brier: 0.170368 (734.7s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_31.json

@@ -1,0 +1,4 @@
+Total configs: 180
+Config 87: {'model': 'xgb_reg', 'features': 'extended17', 'seeds': True, 'interactions': False, 'max_depth': 4, 'learning_rate': 0.03, 'n_seeds': 10, 'calibration': 'spline'}
+  Brier: 0.229173 (775.0s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_87.json

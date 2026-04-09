@@ -1,0 +1,4 @@
+Total configs: 180
+Config 120: {'model': 'lr', 'features': 'all30', 'seeds': True, 'interactions': True, 'C': 0.1, 'clip_lo': 0.03, 'clip_hi': 0.97}
+  Brier: 0.168350 (743.5s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_120.json

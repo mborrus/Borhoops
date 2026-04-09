@@ -1,0 +1,4 @@
+Total configs: 180
+Config 75: {'model': 'lr', 'features': 'extended17', 'seeds': True, 'interactions': False, 'C': 0.1, 'clip_lo': 0.03, 'clip_hi': 0.97}
+  Brier: 0.166618 (746.6s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_75.json

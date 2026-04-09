@@ -1,0 +1,2 @@
+Total configs: 180
+Config 135: {'model': 'lr', 'features': 'all30', 'seeds': True, 'interactions': False, 'C': 0.1, 'clip_lo': 0.03, 'clip_hi': 0.97}

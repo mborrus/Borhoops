@@ -1,0 +1,2 @@
+Total configs: 180
+Config 142: {'model': 'xgb_clf', 'features': 'all30', 'seeds': True, 'interactions': False, 'max_depth': 3, 'learning_rate': 0.05, 'n_seeds': 10}

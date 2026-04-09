@@ -14,7 +14,7 @@ def get_model():
     return Pipeline([
         ("imputer", SimpleImputer(strategy="median")),
         ("scaler", StandardScaler()),
-        ("clf", LogisticRegression(C=0.1, solver="lbfgs", max_iter=1000)),
+        ("clf", LogisticRegression(C=1.0, solver="lbfgs", max_iter=1000)),
     ])
 
 

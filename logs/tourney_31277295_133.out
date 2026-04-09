@@ -1,0 +1,2 @@
+Total configs: 180
+Config 133: {'model': 'lgb_clf', 'features': 'all30', 'seeds': True, 'interactions': True, 'max_depth': 3, 'learning_rate': 0.05}

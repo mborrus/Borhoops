@@ -1,0 +1,4 @@
+Total configs: 180
+Config 104: {'model': 'lgb_clf', 'features': 'extended17', 'seeds': False, 'interactions': True, 'max_depth': 4, 'learning_rate': 0.05}
+  Brier: 0.183674 (742.0s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_104.json

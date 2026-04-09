@@ -1,0 +1,4 @@
+Total configs: 180
+Config 40: {'model': 'xgb_reg', 'features': 'base11', 'seeds': False, 'interactions': True, 'max_depth': 2, 'learning_rate': 0.03, 'n_seeds': 10, 'calibration': 'spline'}
+  Brier: 0.223433 (770.3s)
+  Saved → /home/mborrus/Borhoops/results/tournament/tourney_40.json

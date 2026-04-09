@@ -1,0 +1,16 @@
+{
+  "model": "tourney_89",
+  "results": {
+    "brier": 0.17433,
+    "n_games": 1315,
+    "elapsed_s": 739.9,
+    "config": {
+      "model": "lgb_clf",
+      "features": "extended17",
+      "seeds": true,
+      "interactions": false,
+      "max_depth": 4,
+      "learning_rate": 0.05
+    }
+  }
+}

@@ -12,26 +12,94 @@ The v1 notebooks have been extracted into a working Python pipeline (`src/`). Th
 
 ```
 Borhoops/
-├── src/                      # v2 Python pipeline
-│   ├── extract/              # extract_kaggle.py, extract_espn.py
-│   ├── transform/            # transform_espn.py (ESPN → Kaggle format)
-│   ├── predict/              # elo.py (Elo engine), submission.py (I/O + predictions)
-│   └── runner.py             # Orchestrates all steps (--source kaggle|espn|transform|predict)
-├── scripts/                  # One-time data precomputation
-│   ├── build_home_lookup.py  # Geocode team home cities → Home_Lookup.csv
-│   └── build_hfa.py          # Compute home field advantage → HomeFieldAdvantage.csv
-├── tests/                    # 65 tests (pytest)
-├── original_notebooks/       # v1 Jupyter notebooks (reference, no longer primary)
-├── data/                     # All input data (gitignored), flat by source
-│   ├── kaggle/               # Kaggle competition CSVs (men's M* and women's W*)
-│   ├── nate/                 # Nate Silver SBCB ratings (scraped from Substack)
-│   ├── derived/              # Generated lookup tables (Home_Lookup.csv, HomeFieldAdvantage.csv, espn_kaggle_crosswalk.csv)
-│   └── cbbpy/                # CBBpy ESPN scraper downloads (daily game results + locations)
-├── Output/                   # Model prediction CSVs in Kaggle submission format
-├── config.yaml               # Paths config (data_dir, output_dir)
-├── requirements.txt          # Python dependencies
-├── secrets.sh                # Credentials (gitignored)
-└── ballenvy/                 # Python 3.11 virtual environment (gitignored)
+├── src/                          # Core Python pipeline
+│   ├── extract/                  # Data extraction
+│   │   ├── extract_kaggle.py     # Kaggle competition data download
+│   │   ├── extract_espn.py       # ESPN game scraper (CBBpy)
+│   │   ├── extract_odds.py       # ESPN odds scraper (2013+)
+│   │   ├── extract_polls.py      # AP/Coaches poll scraper (2003+)
+│   │   ├── extract_barttorvik.py # T-Rank ratings
+│   │   ├── extract_vegas.py      # The Odds API
+│   │   └── extract_roster.py     # ESPN roster API (2025+ only)
+│   ├── transform/                # Data transformation
+│   │   ├── transform_espn.py     # ESPN → Kaggle format
+│   │   ├── transform_odds.py     # Odds → Kaggle IDs + DayNum
+│   │   ├── transform_polls.py    # Polls → Kaggle IDs
+│   │   ├── transform_barttorvik.py
+│   │   ├── transform_roster.py
+│   │   └── team_utils.py         # Fuzzy team name matching
+│   ├── predict/                  # Prediction pipeline
+│   │   ├── elo.py                # Elo engine (HFA, travel, MOV, K-factor)
+│   │   ├── submission.py         # load_data() + Kaggle submission generation
+│   │   └── ml_submit.py          # ML model submission generation
+│   ├── train/                    # Model training & evaluation
+│   │   ├── features.py           # Feature pipeline (40 features, Elo loop)
+│   │   ├── extended_features.py  # Odds, polls, roster, seed feature loaders
+│   │   ├── custom_ratings.py     # Colley Matrix + SRS rating systems
+│   │   ├── evaluate.py           # LOYO CV framework, Brier/log-loss
+│   │   ├── cache_features.py     # Precompute & cache Elo + per-season snapshots
+│   │   ├── train.py              # Train 4 base models (RF, LR, SVM, XGB)
+│   │   ├── train_gbm.py          # GBM hyperparameter sweep (Optuna/grid)
+│   │   ├── train_tournament.py   # Tournament-specific model sweep
+│   │   ├── train_ensemble.py     # Stacking ensemble with meta-learner
+│   │   ├── train_nn.py           # PyTorch feed-forward neural net
+│   │   ├── train_lstm.py         # Siamese LSTM temporal model
+│   │   ├── train_bayesian.py     # PyMC Bayesian hierarchical
+│   │   ├── train_bart.py         # BART (Bayesian trees)
+│   │   ├── train_gp.py           # Gaussian Process classifier
+│   │   ├── train_edge.py         # Edge model (model vs Vegas)
+│   │   ├── sweep_edge.py         # Edge model feature/model sweep
+│   │   ├── alpha_analysis.py     # Alpha analysis vs closing lines
+│   │   └── mlflow_utils.py       # MLflow logging helpers
+│   ├── evaluate/                 # Evaluation utilities
+│   │   ├── backtest.py           # Tournament & season backtesting
+│   │   └── metrics.py            # Brier score, calibration
+│   └── runner.py                 # CLI orchestrator (--source kaggle|espn|predict|...)
+├── autoresearch/                 # Autonomous ML experimentation
+│   ├── prepare.py                # Evaluation harness (LOYO CV, 40 features)
+│   ├── experiment.py             # Model config (agent modifies this)
+│   ├── tournament_prepare.py     # Tournament-specific LOYO harness
+│   ├── tournament_experiment.py  # Tournament model config
+│   └── results.tsv               # Experiment log
+├── scripts/                      # Utility scripts
+│   ├── hpc/                      # HPC (Gaia cluster) job scripts
+│   │   ├── setup_env.sh          # Create borhoops conda env
+│   │   ├── launch_phase2.sh      # Submit daytime model zoo jobs
+│   │   ├── launch_phase2_full.sh # Submit full-cluster overnight run
+│   │   ├── train_gbm_*.sh        # GBM sweep jobs (XGB/LGB/CatBoost)
+│   │   ├── train_tournament.sh   # Tournament model sweep
+│   │   ├── sweep_edge.sh         # Edge model sweep
+│   │   └── run_*.sh              # Various experiment jobs
+│   ├── build_home_lookup.py      # Geocode team cities
+│   ├── build_hfa.py              # Home field advantage computation
+│   └── backfill_mlflow.py        # Backfill results to MLflow
+├── tests/                        # pytest test suite
+│   ├── test_train.py             # Feature pipeline tests
+│   ├── test_phase1_features.py   # Phase 1 feature tests (22 tests)
+│   └── ...                       # Elo, transform, submission tests
+├── docs/                         # Documentation (see docs/README.md)
+├── data/                         # All input data (gitignored)
+│   ├── kaggle/                   # Kaggle competition CSVs
+│   ├── odds/                     # ESPN odds per season (2013-2026)
+│   ├── polls/                    # AP/Coaches polls per season (2003-2026)
+│   ├── roster/                   # ESPN roster data (2025-2026)
+│   ├── barttorvik/               # T-Rank ratings per season
+│   ├── derived/                  # Generated files (crosswalk, odds, polls, HFA, etc.)
+│   ├── cache/                    # Precomputed Elo features + per-season snapshots
+│   ├── nate/                     # Nate Silver SBCB ratings
+│   └── cbbpy/                    # CBBpy ESPN scraper downloads
+├── results/                      # Model results (gitignored)
+│   ├── gbm/                      # GBM grid search (576 configs)
+│   ├── tournament/               # Tournament model sweep (180 configs)
+│   ├── edge_sweep/               # Edge model sweep (30 configs)
+│   ├── bayesian/                 # Bayesian model results
+│   ├── nn/                       # Neural net sweep results
+│   └── ...                       # alpha, ensemble, gp, lstm, bart
+├── mlruns/                       # MLflow experiment tracking (gitignored)
+├── Output/                       # Kaggle submission CSVs
+├── config.yaml                   # Paths config
+├── requirements.txt              # Python dependencies
+└── logs/                         # Slurm job logs (gitignored)
 ```
 
 ## Key Data Files for the Elo Model

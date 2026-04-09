@@ -41,19 +41,33 @@ Override config: 1s 99% R1+R2 + 95% S16, 2s 99% R1 + 85% R2, 3s+4s 99% R1
 
 **Pattern: Override helps in chalky years (1-seeds 8/8 in S16), hurts in upset years.**
 
-Helps: 2/5 years (2016, 2019) — both had 1-seeds 8/8 in S16
-Hurts: 2/5 years (2015, 2018) — 1-seeds lost in S16
-Neutral: 1/5 years (2017) — marginal hurt
+Full 10-year backtest (using cached Elo snapshots — instant):
 
-Note: Only 5 of 10 years completed before timeout (Elo rebuild per year is slow). Full backtest needs the cached Elo approach to be practical.
+| Year | Base | Override | Delta | 1-seeds S16 | Verdict |
+|---|---|---|---|---|---|
+| 2015 | 0.1592 | 0.1604 | +0.0012 | 7/8 | Hurts |
+| 2016 | 0.1770 | 0.1744 | -0.0026 | 8/8 | Helps |
+| 2017 | 0.1558 | 0.1566 | +0.0008 | 7/8 | Hurts |
+| 2018 | 0.1737 | 0.1770 | +0.0033 | 6/7 | Hurts |
+| 2019 | 0.1493 | 0.1478 | -0.0015 | 8/8 | Helps |
+| 2021 | 0.1892 | 0.1884 | -0.0008 | 7/8 | Slight help |
+| 2022 | 0.1932 | 0.1925 | -0.0007 | 7/8 | Slight help |
+| 2023 | 0.1914 | 0.1947 | +0.0033 | 5/7 | Hurts |
+| 2024 | 0.1631 | 0.1612 | -0.0019 | 8/8 | Helps |
+| 2025 | 0.1398 | 0.1391 | -0.0007 | 8/8 | Slight help |
+| **TOTAL** | **0.1692** | **0.1692** | **+0.0001** | | **Dead even** |
+
+**Overall: exactly neutral across 1,315 games.** Helps 6 years, hurts 4, but the hurts are bigger when they happen (2018 and 2023: +0.0033 each from 1-seed S16 upsets).
 
 ## Conclusion
 
-The seed override is NOT a universal improvement — it's a bet on chalk. In chalky years (+2016, +2019, +2026) it provides 0.001-0.006 improvement. In upset years (-2015, -2018) it costs 0.001-0.003.
+**The seed override is dead neutral over 10 years (+0.0001).** Not a default strategy.
 
-**For Kaggle**: risky as a default strategy. Could be used as a "if the tournament looks chalky early" adjustment mid-tournament, but Stage 2 submissions are locked before games start.
+It's a bet on chalk — helps in chalky years (2016, 2019, 2024: +0.002 avg), hurts in upset years (2018, 2023: -0.003 avg). Over 1,315 games, these cancel out exactly.
 
-**For betting**: this is exactly the kind of thing the market already prices correctly. 1-seeds are massive moneyline favorites in early rounds — the override just confirms what the market already knows.
+**For Kaggle**: skip it. You can't predict in advance whether it'll be a chalky year, and Stage 2 submissions are locked before games start.
+
+**For betting**: the market already prices 1-seed dominance correctly. No edge here.
 
 ## Models Tested
 
